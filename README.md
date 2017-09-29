@@ -14,3 +14,4 @@ plexdl Westworld
 
 - cleanup
 - tests
+- make search type limited to movies, maybe add option to search for specific types
