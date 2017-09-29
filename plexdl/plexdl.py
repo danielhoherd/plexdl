@@ -12,16 +12,15 @@ class client():
         if item.iterParts:
             locations = [i for i in item.iterParts() if i]
             for location in locations:
-                download_url = item._server.url('%s?download=1' % location.key)
-                for part in item.iterParts():
-                    print('    {} {}x{} {}'.format(item.title,
-                                                   item.media[0].width,
-                                                   item.media[0].height,
-                                                   item.media[0].videoCodec))
-                    print('        curl -o "{}.{}" "{}"'
-                          .format(item.title,
-                                  location.container,
-                                  download_url))
+                download_url = item._server.url('{}?download=1'.format(location.key))
+                print('    {} {}x{} {}'.format(item.title,
+                                               item.media[0].width,
+                                               item.media[0].height,
+                                               item.media[0].videoCodec))
+                print('        curl -o "{}.{}" "{}"'
+                      .format(item.title,
+                              location.container,
+                              download_url))
 
     def main(self, username, password, movie):
 
