@@ -1,0 +1,9 @@
+*.egg-info/
+*.m4a
+*.pyc
+.idea
+.tox
+build/
+dist/
+env/
+venv/

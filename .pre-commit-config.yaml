@@ -1,0 +1,16 @@
+-   repo: git@github.com:pre-commit/pre-commit-hooks.git
+    sha: v0.9.4
+    hooks:
+    -   id: check-byte-order-marker
+    -   id: check-case-conflict
+    -   id: check-json
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: fix-encoding-pragma
+    -   id: flake8
+    -   id: requirements-txt-fixer
+    -   id: trailing-whitespace
+-   repo: git@github.com:detailyang/pre-commit-shell.git
+    sha: 1.0.2
+    hooks:
+    -   id: shell-lint
