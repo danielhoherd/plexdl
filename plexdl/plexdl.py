@@ -22,7 +22,7 @@ class client():
                               location.container,
                               download_url))
 
-    def main(self, username, password, movie):
+    def main(self, username, password, title):
 
         account = MyPlexAccount(username, password)
         available_resources = list()
@@ -39,7 +39,7 @@ class client():
                               this_server.version,
                               this_server.platform,
                               this_server.platformVersion))
-                for item in this_server.search(movie, mediatype='movie'):
+                for item in this_server.search(title, mediatype='movie'):
                     self.print_item_info(item)
 
             except requests.exceptions.ConnectionError as e:
