@@ -4,7 +4,7 @@ Starting from scratch building a plex direct downloader. The whole point is to n
 
 ```
 git clone https://wherever/plexdl.git
-pipsi install --editable .
+pipsi install --editable .  # --editable is only useful for developing
 export PLEXDL_USER='foo'
 export PELXDL_PASS='bar'
 plexdl Westworld
