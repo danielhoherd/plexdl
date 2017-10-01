@@ -1,4 +1,4 @@
-Starting from scratch building a plex direct downloader. The whole point is to not get media that has not been transcoded.
+The purpose of this tool is to allow you to download non-transcoded media from Plex Media Server shares.
 
 # Installation
 
