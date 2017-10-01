@@ -45,3 +45,4 @@ Searching server: "plata"
 - tests
 - make search type limited to movies, maybe add option to search for specific types
 - make this only use python3 because unicode
+- Don't try to print resolution for non-movie files
