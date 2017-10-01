@@ -3,7 +3,7 @@ Starting from scratch building a plex direct downloader. The whole point is to n
 # Installation
 
 ```
-git clone https://wherever/plexdl.git
+git clone https://github.com/danielhoherd/plexdl.git
 pipsi install --editable .  # --editable is only useful for developing
 ```
 
