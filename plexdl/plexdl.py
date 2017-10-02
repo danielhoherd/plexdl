@@ -11,12 +11,16 @@ class client():
     def print_item_info(item):
         if item.iterParts:
             locations = [i for i in item.iterParts() if i]
+            media_info = '    {}'.format(item.title)
             for location in locations:
                 download_url = item._server.url('{}?download=1'.format(location.key))
-                print('    {} {}x{} {}'.format(item.title,
-                                               item.media[0].width,
-                                               item.media[0].height,
-                                               item.media[0].videoCodec))
+                if item.media[0].width is not None:
+                    media_info += ' {}x{}'.format(item.media[0].width, item.media[0].height)
+                if item.media[0].videoCodec is not None:
+                    media_info += ' {}'.format(item.media[0].videoCodec)
+                if item.media[0].audioCodec is not None:
+                    media_info += ' {}'.format(item.media[0].audioCodec)
+                print(media_info)
                 print('        curl -o "{}.{}" "{}"'
                       .format(item.title,
                               location.container,
