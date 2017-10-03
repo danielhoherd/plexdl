@@ -31,11 +31,11 @@ Searching server: "Plex Cloud"
 Searching server: "plata"
   Plex version: 1.9.2.4285-9f65b88ae
   OS: Linux 4.10.0-22-generic (#24~16.04.1-Ubuntu SMP Tue May 23 17:03:51 UTC 2017)
-    Farmer Chords NonexNone None
+    Farmer Chords mp3
         curl -o "Farmer Chords.mp3" "https://..."
-    Old MacDonald Had a Farm NonexNone None
+    Old MacDonald Had a Farm aac
         curl -o "Old MacDonald Had a Farm.mp4" "https://..."
-    Combination Squares; Farmed Shrimp; Ball Valves; String Trimmers 1280x720 h264
+    Combination Squares; Farmed Shrimp; Ball Valves; String Trimmers 1280x720 h264 ac3
         curl -o "Combination Squares; Farmed Shrimp; Ball Valves; String Trimmers.mkv" "https://..."
 ```
 
