@@ -20,6 +20,8 @@ class client():
                     media_info += ' {}'.format(item.media[0].videoCodec)
                 if item.media[0].audioCodec is not None:
                     media_info += ' {}'.format(item.media[0].audioCodec)
+                if item.media[0].bitrate is not None:
+                    media_info += ' {}kbps'.format(item.media[0].bitrate)
                 print(media_info)
                 print('        curl -o "{}.{}" "{}"'
                       .format(item.title,
