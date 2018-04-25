@@ -38,6 +38,8 @@ class client():
                 available_resources.append(r)
 
         for this_resource in available_resources:
+            if not this_resource.presence:
+                continue
             try:
                 this_server = PlexServer(this_resource.connections[-1:][0].uri, this_resource.accessToken)
                 print('\nSearching server: "{}"\n  Plex version: {}\n  OS: {} {}'
@@ -49,9 +51,6 @@ class client():
                     self.print_item_info(item)
 
             except requests.exceptions.ConnectionError as e:
-                print('  ERROR: something went wrong with "{}"'.format(this_server.friendlyName))
+                print('  ERROR: something went wrong with "{}"'.format(this_resource.name))
                 print(e)
                 pass
-
-            except:
-                raise
