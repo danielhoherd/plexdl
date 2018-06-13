@@ -41,6 +41,8 @@ Searching server: "plata"
 
 # TODO
 
+- Make this work with pipenv
+- Figure out why it's getting 401's recently
 - cleanup
 - tests
 - make search type limited to movies, maybe add option to search for specific types
