@@ -1,5 +1,6 @@
+repos:
 -   repo: git@github.com:pre-commit/pre-commit-hooks.git
-    sha: v1.0.0
+    rev: v1.3.0
     hooks:
     -   id: check-byte-order-marker
     -   id: check-case-conflict
@@ -11,10 +12,10 @@
     -   id: requirements-txt-fixer
     -   id: trailing-whitespace
 -   repo: git@github.com:detailyang/pre-commit-shell.git
-    sha: 1.0.2
+    rev: 1.0.2
     hooks:
     -   id: shell-lint
 -   repo: https://github.com/asottile/pyupgrade
-    sha: v1.2.0
+    rev: v1.4.0
     hooks:
     -   id: pyupgrade
