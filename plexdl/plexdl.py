@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+import requests
 from plexapi.myplex import MyPlexAccount
 from plexapi.server import PlexServer
-import requests
 
 
 class client():

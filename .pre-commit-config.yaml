@@ -1,21 +1,54 @@
 repos:
--   repo: git@github.com:pre-commit/pre-commit-hooks.git
+  - repo: git@github.com:pre-commit/pre-commit-hooks.git
     rev: v1.4.0
     hooks:
-    -   id: check-byte-order-marker
-    -   id: check-case-conflict
-    -   id: check-json
-    -   id: check-yaml
-    -   id: end-of-file-fixer
-    -   id: fix-encoding-pragma
-    -   id: flake8
-    -   id: requirements-txt-fixer
-    -   id: trailing-whitespace
--   repo: git@github.com:detailyang/pre-commit-shell.git
-    rev: 1.0.2
+      - id: check-byte-order-marker
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-xml
+      - id: check-yaml
+      - id: debug-statements
+      - id: double-quote-string-fixer
+      - id: end-of-file-fixer
+      - id: fix-encoding-pragma
+      - id: flake8
+      - id: mixed-line-ending
+        args: ['--fix=lf' ]
+      - id: requirements-txt-fixer
+      - id: sort-simple-yaml
+      - id: trailing-whitespace
+  - repo: git@github.com:detailyang/pre-commit-shell.git
+    rev: 1.0.4
     hooks:
-    -   id: shell-lint
--   repo: https://github.com/asottile/pyupgrade
-    rev: v1.4.0
+    - id: shell-lint
+  - repo: git@github.com:asottile/pyupgrade.git
+    rev: v1.5.1
     hooks:
-    -   id: pyupgrade
+      - id: pyupgrade
+  - repo: git@github.com:Lucas-C/pre-commit-hooks.git
+    rev: v1.1.5
+    hooks:
+      - id: remove-tabs
+        exclude: ^Makefile$
+  - repo: git@github.com:asottile/reorder_python_imports.git
+    rev: v1.1.1
+    hooks:
+      - id: reorder-python-imports
+  - repo: local
+    hooks:
+      - id: remove-unicode-non-breaking-spaces
+        name: Remove unicode non-breaking space character U+00A0
+        language: system
+        entry: perl -pi* -e 's/\xc2\xa0/ /g && ($t = 1) && print STDERR $_; END{{exit $t}}'
+        exclude: '.*\.(a|png|jpg|jpeg|gif)'
+      - id: remove-unicode-zero-width-non-breaking-spaces
+        name: Remove unicode zero width non-breaking space character U+FEFF
+        language: system
+        entry: perl -pi* -e 's/\xef\xbb\xbf//g && ($t = 1) && print STDERR $_; END{{exit $t}}'
+        exclude: '.*\.(a|png|jpg|jpeg|gif)'
+      - id: remove-en-dashes
+        name: Remove the unicode character U+2013 (en dash)
+        language: system
+        entry: perl -pi* -e 's/\xe2\x80\x93/-/g && ($t = 1) && print STDERR $_; END{{exit $t}}'
+        exclude: '.*\.(a|png|jpg|jpeg|gif)'
