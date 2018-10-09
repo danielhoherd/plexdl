@@ -8,12 +8,12 @@ class client():
     """A client interface to plex for finding direct download URLs"""
 
     @staticmethod
-    def print_item_info(item):
+    def print_item_info(item, access_token):
         if item.iterParts:
             locations = [i for i in item.iterParts() if i]
             media_info = '    {}'.format(item.title)
             for location in locations:
-                download_url = item._server.url('{}?download=1'.format(location.key))
+                download_url = item._server.url('{}?download=1&X-Plex-Token={}'.format(location.key, access_token))
                 if item.media[0].width is not None:
                     media_info += ' {}x{}'.format(item.media[0].width, item.media[0].height)
                 if item.media[0].videoCodec is not None:
@@ -48,7 +48,7 @@ class client():
                               this_server.platform,
                               this_server.platformVersion))
                 for item in this_server.search(title, mediatype='movie'):
-                    self.print_item_info(item)
+                    self.print_item_info(item, this_resource.accessToken)
 
             except requests.exceptions.ConnectionError as e:
                 print('  ERROR: something went wrong with "{}"'.format(this_resource.name))
