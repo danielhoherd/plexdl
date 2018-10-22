@@ -1,6 +1,6 @@
 repos:
   - repo: git@github.com:pre-commit/pre-commit-hooks.git
-    rev: v1.4.0
+    rev: v2.0.0
     hooks:
       - id: check-byte-order-marker
       - id: check-case-conflict
@@ -23,16 +23,16 @@ repos:
     hooks:
     - id: shell-lint
   - repo: git@github.com:asottile/pyupgrade.git
-    rev: v1.5.1
+    rev: v1.9.0
     hooks:
       - id: pyupgrade
   - repo: git@github.com:Lucas-C/pre-commit-hooks.git
-    rev: v1.1.5
+    rev: v1.1.6
     hooks:
       - id: remove-tabs
         exclude: ^Makefile$
   - repo: git@github.com:asottile/reorder_python_imports.git
-    rev: v1.1.1
+    rev: v1.3.2
     hooks:
       - id: reorder-python-imports
   - repo: local
