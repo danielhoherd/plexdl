@@ -98,10 +98,10 @@
         },
         "plexapi": {
             "hashes": [
-                "sha256:f55f76b6519eb7aa31507148ad7b399515cc44b26951212f7d552780dd478d5e"
+                "sha256:4044876f354b6b93737f704e41910c5a5537e000ad9d4dc79b4ded7bc9e9ce4d"
             ],
             "index": "pypi",
-            "version": "==3.0.6"
+            "version": "==3.1.0"
         },
         "pygments": {
             "hashes": [
@@ -128,10 +128,10 @@
         },
         "tqdm": {
             "hashes": [
-                "sha256:224291ee0d8c52d91b037fd90806f48c79bcd9994d3b0abc9e44b946a908fccd",
-                "sha256:77b8424d41b31e68f437c6dd9cd567aebc9a860507cb42fbd880a5f822d966fe"
+                "sha256:3c4d4a5a41ef162dd61f1edb86b0e1c7859054ab656b2e7c7b77e7fbf6d9f392",
+                "sha256:5b4d5549984503050883bc126280b386f5f4ca87e6c023c5d015655ad75bdebb"
             ],
-            "version": "==4.23.4"
+            "version": "==4.28.1"
         },
         "urllib3": {
             "hashes": [
