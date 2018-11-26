@@ -23,7 +23,7 @@ repos:
     hooks:
     - id: shell-lint
   - repo: git@github.com:asottile/pyupgrade.git
-    rev: v1.9.0
+    rev: v1.11.0
     hooks:
       - id: pyupgrade
   - repo: git@github.com:Lucas-C/pre-commit-hooks.git
@@ -32,7 +32,7 @@ repos:
       - id: remove-tabs
         exclude: ^Makefile$
   - repo: git@github.com:asottile/reorder_python_imports.git
-    rev: v1.3.2
+    rev: v1.3.4
     hooks:
       - id: reorder-python-imports
   - repo: local
