@@ -1,3 +1,4 @@
+---
 repos:
   - repo: git@github.com:pre-commit/pre-commit-hooks.git
     rev: v2.0.0
@@ -21,7 +22,7 @@ repos:
   - repo: git@github.com:detailyang/pre-commit-shell.git
     rev: 1.0.4
     hooks:
-    - id: shell-lint
+      - id: shell-lint
   - repo: git@github.com:asottile/pyupgrade.git
     rev: v1.11.0
     hooks:
@@ -35,6 +36,10 @@ repos:
     rev: v1.3.4
     hooks:
       - id: reorder-python-imports
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.13.0
+    hooks:
+      - id: yamllint
   - repo: local
     hooks:
       - id: remove-unicode-non-breaking-spaces
