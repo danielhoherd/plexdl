@@ -31,7 +31,7 @@ repos:
     rev: v1.1.6
     hooks:
       - id: remove-tabs
-        exclude: ^Makefile$
+        exclude_types: [makefile]
   - repo: git@github.com:asottile/reorder_python_imports.git
     rev: v1.3.4
     hooks:
