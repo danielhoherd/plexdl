@@ -4,25 +4,28 @@ The purpose of this tool is to allow you to download non-transcoded media from P
 
 ```
 git clone https://github.com/danielhoherd/plexdl.git
-pipsi install --editable .  # --editable is only useful for developing
+pipsi install --editable plexdl  # --editable is only useful for developing
 ```
 
 # Usage
 
 ```
 $ plexdl --help
-Usage: plexdl [OPTIONS] TITLE
+usage: plexdl [-h] [--debug] --username USERNAME --password PASSWORD title
 
-  Searches your plex account for media matching the given string, then
-  prints out download commands.
+Search your Plex libraries and show download URLs
 
-Options:
-  --username TEXT  Your plex username  [required]
-  --password TEXT  Your plex password  [required]
-  --help           Show this message and exit.
+positional arguments:
+  title                Title to search for
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --debug              Enable debug output
+  --username USERNAME  Your plex username
+  --password PASSWORD  Your plex password
 $ export PLEXDL_USER='foo'
 $ export PELXDL_PASS='bar'
-$ plexdl farm
+$ plexdl --username="${PLEXDL_USER}" --password="${PELXDL_PASS}" farm
 
 Searching server: "Plex Cloud"
   Plex version: 1.5.2.246-1a7319ace
@@ -46,5 +49,4 @@ Searching server: "plata"
 - cleanup
 - tests
 - make search type limited to movies, maybe add option to search for specific types
-- make this only use python3 because unicode
 - don't try to name files with characters that would be invalid
