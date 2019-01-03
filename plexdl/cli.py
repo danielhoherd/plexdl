@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import argparse
+import sys
 
 import plexdl
 
@@ -17,7 +18,10 @@ def main():
     """Searches your plex account for media matching the given string, then prints out download commands."""
     args = parse_args()
     p = plexdl.Client()
-    p.main(args.username, args.password, args.title)
+    try:
+        p.main(args.username, args.password, args.title)
+    except KeyboardInterrupt:
+        sys.exit(1)
 
 
 if __name__ == '__main__':
