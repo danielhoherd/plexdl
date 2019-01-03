@@ -48,14 +48,21 @@ class Client:
             if not this_resource.presence:
                 continue
             try:
-                this_server = PlexServer(this_resource.connections[-1:][0].uri, this_resource.accessToken)
-                print('\nSearching server: "{}"\n  Plex version: {}\n  OS: {} {}'
-                      .format(this_server.friendlyName,
-                              this_server.version,
-                              this_server.platform,
-                              this_server.platformVersion))
-                for item in this_server.search(title, mediatype='movie'):
-                    self.print_item_info(item, this_resource.accessToken)
+                for connection in this_resource.connections:
+                    if connection.local:
+                        continue
+                    this_server = PlexServer(connection.uri, this_resource.accessToken)
+                    relay_status = ''
+                    if connection.relay:
+                        relay_status = '(relay)'
+                    print('\nSearching server: "{}" {}\n  Plex version: {}\n  OS: {} {}'
+                          .format(this_server.friendlyName,
+                                  relay_status,
+                                  this_server.version,
+                                  this_server.platform,
+                                  this_server.platformVersion))
+                    for item in this_server.search(title, mediatype='movie'):
+                        self.print_item_info(item, this_resource.accessToken)
 
             except requests.exceptions.ConnectionError as e:
                 print('  ERROR: something went wrong with "{}"'.format(this_resource.name))
