@@ -19,22 +19,19 @@ class Client:
     def print_item_info(item, access_token):
         if hasattr(item, 'iterParts'):
             locations = [i for i in item.iterParts() if i]
-            media_info = '    {}'.format(item.title)
+            media_info = f'    {item.title}'
             for location in locations:
-                download_url = item._server.url('{}?download=1&X-Plex-Token={}'.format(location.key, access_token))
+                download_url = item._server.url(f'{location.key}?download=1&X-Plex-Token={access_token}')
                 if item.media[0].width is not None:
-                    media_info += ' {}x{}'.format(item.media[0].width, item.media[0].height)
+                    media_info += f' {item.media[0].width}x{item.media[0].height}'
                 if item.media[0].videoCodec is not None:
-                    media_info += ' {}'.format(item.media[0].videoCodec)
+                    media_info += f' {item.media[0].videoCodec}'
                 if item.media[0].audioCodec is not None:
-                    media_info += ' {}'.format(item.media[0].audioCodec)
+                    media_info += f' {item.media[0].audioCodec}'
                 if item.media[0].bitrate is not None:
-                    media_info += ' {}kbps'.format(item.media[0].bitrate)
+                    media_info += f' {item.media[0].bitrate}kbps'
                 print(media_info)
-                print('        curl -o "{}.{}" "{}"'
-                      .format(item.title,
-                              location.container,
-                              download_url))
+                print(f'        curl -o "{item.title}.{location.container}" "{download_url}"')
 
     def main(self, username, password, title):
         account = MyPlexAccount(username, password)
@@ -54,17 +51,14 @@ class Client:
                     this_server = PlexServer(connection.uri, this_resource.accessToken)
                     relay_status = ''
                     if connection.relay:
-                        relay_status = '(relay)'
-                    print('\nSearching server: "{}" {}\n  Plex version: {}\n  OS: {} {}'
-                          .format(this_server.friendlyName,
-                                  relay_status,
-                                  this_server.version,
-                                  this_server.platform,
-                                  this_server.platformVersion))
+                        relay_status = ' (relay)'
+                    print(f'\nServer: "{this_server.friendlyName}"{relay_status}\n'
+                          f'Plex version: {this_server.version}\n"'
+                          f'OS: {this_server.platform} {this_server.platformVersion}')
                     for item in this_server.search(title, mediatype='movie'):
                         self.print_item_info(item, this_resource.accessToken)
 
             except requests.exceptions.ConnectionError as e:
-                print('  ERROR: something went wrong with "{}"'.format(this_resource.name))
+                print(f'  ERROR: something went wrong with "{this_resource.name}"')
                 print(e)
                 pass
