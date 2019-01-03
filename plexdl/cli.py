@@ -1,19 +1,23 @@
 # -*- coding: utf-8 -*-
-import click
+import argparse
 
 import plexdl
 
 
-@click.command()
-@click.option('--username', envvar='PLEXDL_USER',
-              required=True, help='Your plex username')
-@click.option('--password', envvar='PLEXDL_PASS',
-              required=True, help='Your plex password')
-@click.argument('title')
-def main(username, password, title):
+def parse_args():
+    parser = argparse.ArgumentParser(description='Search your Plex libraries and show download URLs')
+    parser.add_argument('--debug', action='store_true', help='Enable debug output')
+    parser.add_argument('--username', required=True, help='Your plex username')
+    parser.add_argument('--password', required=True, help='Your plex password')
+    parser.add_argument('title', help='Title to search for')
+    return parser.parse_args()
+
+
+def main():
     """Searches your plex account for media matching the given string, then prints out download commands."""
-    p = plexdl.client()
-    p.main(username, password, title)
+    args = parse_args()
+    p = plexdl.Client()
+    p.main(args.username, args.password, args.title)
 
 
 if __name__ == '__main__':

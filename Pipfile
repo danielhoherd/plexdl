@@ -1,21 +1,15 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [dev-packages]
 
-
-
 [packages]
-
 blessings = "==1.6"
 bpython = "*"
 certifi = "==2017.7.27.1"
 chardet = "==3.0.4"
-click = "==6.7"
 curtsies = "==0.2.11"
 greenlet = "==0.4.12"
 idna = "==2.6"

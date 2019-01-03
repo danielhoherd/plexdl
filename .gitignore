@@ -7,3 +7,4 @@ build/
 dist/
 env/
 venv/
+Pipfile.lock
