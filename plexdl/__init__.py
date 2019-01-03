@@ -57,8 +57,7 @@ class Client:
                           f'OS: {this_server.platform} {this_server.platformVersion}')
                     for item in this_server.search(title, mediatype='movie'):
                         self.print_item_info(item, this_resource.accessToken)
-
             except requests.exceptions.ConnectionError as e:
-                print(f'  ERROR: something went wrong with "{this_resource.name}"')
-                print(e)
-                pass
+                print(f'ERROR: connection to "{this_resource.name}" failed.')
+                logging.debug(e)
+                continue

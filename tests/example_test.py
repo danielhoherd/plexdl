@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import unicode_literals
-
-from plexdl import client
+from plexdl import Client
 
 
 def test_hello():
-    assert client.hello() == 'world'
+    assert Client.hello() == 'world'
