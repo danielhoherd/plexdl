@@ -1,7 +1,7 @@
 ---
 repos:
   - repo: git@github.com:pre-commit/pre-commit-hooks.git
-    rev: v2.0.0
+    rev: v2.1.0
     hooks:
       - id: check-byte-order-marker
       - id: check-case-conflict
