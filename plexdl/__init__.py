@@ -20,17 +20,17 @@ class Client:
         if hasattr(item, 'iterParts'):
             locations = [i for i in item.iterParts() if i]
             for location in locations:
-                media_info = f'    {item.title}'
-                download_url = item._server.url(f'{location.key}?download=1&X-Plex-Token={access_token}')
+                media_info = list()
                 if item.media[0].width is not None:
-                    media_info += f' {item.media[0].width}x{item.media[0].height}'
+                    media_info.append(f'{item.media[0].width}x{item.media[0].height}')
                 if item.media[0].videoCodec is not None:
-                    media_info += f' {item.media[0].videoCodec}'
+                    media_info.append(item.media[0].videoCodec)
                 if item.media[0].audioCodec is not None:
-                    media_info += f' {item.media[0].audioCodec}'
+                    media_info.append(item.media[0].audioCodec)
                 if item.media[0].bitrate is not None:
-                    media_info += f' {item.media[0].bitrate}kbps'
-                print(media_info)
+                    media_info.append(f'{item.media[0].bitrate}kbps')
+                print(f'    {item.title} ({", ".join(media_info)})')
+                download_url = item._server.url(f'{location.key}?download=1&X-Plex-Token={access_token}')
                 print(f'        curl -o "{item.title}.{location.container}" "{download_url}"')
 
     def main(self, username, password, title):
