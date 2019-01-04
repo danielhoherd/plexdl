@@ -19,8 +19,8 @@ class Client:
     def print_item_info(item, access_token):
         if hasattr(item, 'iterParts'):
             locations = [i for i in item.iterParts() if i]
-            media_info = f'    {item.title}'
             for location in locations:
+                media_info = f'    {item.title}'
                 download_url = item._server.url(f'{location.key}?download=1&X-Plex-Token={access_token}')
                 if item.media[0].width is not None:
                     media_info += f' {item.media[0].width}x{item.media[0].height}'
