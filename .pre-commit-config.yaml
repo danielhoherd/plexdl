@@ -1,6 +1,6 @@
 ---
 repos:
-  - repo: git@github.com:pre-commit/pre-commit-hooks.git
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.1.0
     hooks:
       - id: check-byte-order-marker
@@ -10,7 +10,6 @@ repos:
       - id: check-xml
       - id: check-yaml
       - id: debug-statements
-      - id: double-quote-string-fixer
       - id: end-of-file-fixer
       - id: fix-encoding-pragma
       - id: flake8
@@ -19,23 +18,20 @@ repos:
       - id: requirements-txt-fixer
       - id: sort-simple-yaml
       - id: trailing-whitespace
-  - repo: git@github.com:detailyang/pre-commit-shell.git
+  - repo: https://github.com/detailyang/pre-commit-shell
     rev: 1.0.4
     hooks:
       - id: shell-lint
-  - repo: git@github.com:asottile/pyupgrade.git
-    rev: v1.11.0
+  - repo: https://github.com/ambv/black
+    rev: 18.9b0
     hooks:
-      - id: pyupgrade
-  - repo: git@github.com:Lucas-C/pre-commit-hooks.git
+      - id: black
+        args: ['-l', '132']
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.1.6
     hooks:
       - id: remove-tabs
         exclude_types: [makefile]
-  - repo: git@github.com:asottile/reorder_python_imports.git
-    rev: v1.3.4
-    hooks:
-      - id: reorder-python-imports
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.14.0
     hooks:
