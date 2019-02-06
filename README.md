@@ -4,7 +4,7 @@ The purpose of this tool is to allow you to download non-transcoded media from P
 
 ```
 git clone https://github.com/danielhoherd/plexdl.git
-pipsi install --editable plexdl  # --editable is only useful for developing
+pipx install --editable plexdl  # --editable is only useful for developing
 ```
 
 # Usage
