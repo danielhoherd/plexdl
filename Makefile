@@ -11,5 +11,5 @@ clean:
 	find . -name '__pycache__' -delete
 
 .PHONY: test
-test:
+test: ## Run tests
 	tox
