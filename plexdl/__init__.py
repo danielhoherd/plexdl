@@ -55,7 +55,7 @@ class Client:
                     )
                     for item in this_server.search(title, mediatype="movie"):
                         self.print_item_info(item, this_resource.accessToken)
-            except requests.exceptions.ConnectionError as e:
+            except (requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout) as e:
                 print(f'ERROR: connection to "{this_resource.name}" failed.')
                 logging.debug(e)
                 continue
