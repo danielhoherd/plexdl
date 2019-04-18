@@ -1,10 +1,11 @@
 *.egg-info/
 *.m4a
 *.pyc
+*.sw?
 .idea
 .tox
+Pipfile.lock
 build/
 dist/
 env/
 venv/
-Pipfile.lock

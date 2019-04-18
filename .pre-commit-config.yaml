@@ -11,7 +11,6 @@ repos:
       - id: check-yaml
       - id: debug-statements
       - id: end-of-file-fixer
-      - id: fix-encoding-pragma
       - id: flake8
       - id: mixed-line-ending
         args: ['--fix=lf' ]
@@ -41,9 +40,10 @@ repos:
     hooks:
       - id: yamllint
   - repo: https://github.com/danielhoherd/pre-commit-hooks
-    rev: 1a5d4f6c75ca3eddb36979f0cb6cbc87d0990e74
+    rev: 1584d0b104b2dec0acbafb048d5a53a769c7106d
     hooks:
       - id: CVE-2017-18342
       - id: remove-unicode-non-breaking-spaces
       - id: remove-unicode-zero-width-non-breaking-spaces
       - id: remove-en-dashes
+      - id: sort-gitignore
