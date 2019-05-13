@@ -1,7 +1,7 @@
 ---
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.1.0
+    rev: v2.2.1
     hooks:
       - id: check-byte-order-marker
       - id: check-case-conflict
@@ -40,7 +40,7 @@ repos:
     hooks:
       - id: yamllint
   - repo: https://github.com/danielhoherd/pre-commit-hooks
-    rev: 64b2e139b5e2738ea1dd1980c0c47420959417b2
+    rev: 0b84f996d085b772bcdb94279ebcddc827a2fd57
     hooks:
       - id: CVE-2017-18342
       - id: remove-unicode-non-breaking-spaces
