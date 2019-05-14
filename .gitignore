@@ -2,10 +2,10 @@
 *.m4a
 *.pyc
 *.sw?
+.DS_Store
 .idea
+.mypy_cache
 .tox
 Pipfile.lock
-build/
-dist/
-env/
-venv/
+__pycache__
+env
