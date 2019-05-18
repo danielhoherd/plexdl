@@ -1,0 +1,9 @@
+FROM python:3.7
+
+ADD . /app
+WORKDIR /app
+
+RUN pip install .
+
+ENV PLEXDL_USER PLEXDL_USER
+ENV PLEXDL_PASS PLEXDL_PASS
