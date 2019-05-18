@@ -1,10 +1,19 @@
 The purpose of this tool is to allow you to download non-transcoded media from Plex Media Server shares.
 
-# Installation
+# Run via Docker
+
+```
+export PLEXDL_USER=whoever
+export PLEXDL_PASS=hunter2
+alias plexdl='docker run --rm -e PLEXDL_USER -e PLEXDL_PASS danielhoherd/plexdl plexdl'
+plexdl <movie_name>
+```
+
+# Local Installation
 
 ```
 git clone https://github.com/danielhoherd/plexdl.git
-pipx install --editable --spec="plexdl" plexdl  # --editable is only useful for developing
+pip3 install ./plexdl
 ```
 
 # Usage
@@ -45,7 +54,6 @@ Searching server: "plata"
 # TODO
 
 - Make this work with pipenv
-- Figure out why it's getting 401's recently
 - cleanup
 - tests
 - make search type limited to movies, maybe add option to search for specific types
