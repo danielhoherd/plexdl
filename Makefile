@@ -32,6 +32,7 @@ build: ## Build the Dockerfile found in PWD
 
 .PHONY: push
 push: ## Push built container to docker hub
+	docker images --format="{{.Repository}}:{{.Tag}}" | grep '${IMAGE_NAME}.*DIRTY' | xargs -n1 docker rmi
 	docker push ${IMAGE_NAME}
 
 .PHONY: clean
