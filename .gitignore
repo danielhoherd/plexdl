@@ -6,6 +6,7 @@
 .idea
 .mypy_cache
 .tox
+.vscode
 Pipfile.lock
 __pycache__
 env
