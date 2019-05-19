@@ -1,5 +1,8 @@
 The purpose of this tool is to allow you to download non-transcoded media from Plex Media Server shares.
 
+- <https://github.com/danielhoherd/plexdl>
+- <https://hub.docker.com/r/danielhoherd/plexdl>
+
 # Run via Docker
 
 ```
