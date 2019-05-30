@@ -1,7 +1,7 @@
 ---
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.2.1
+    rev: v2.2.3
     hooks:
       - id: check-byte-order-marker
       - id: check-case-conflict
@@ -23,7 +23,7 @@ repos:
     hooks:
       - id: reorder-python-imports
   - repo: https://github.com/detailyang/pre-commit-shell
-    rev: 1.0.4
+    rev: 1.0.5
     hooks:
       - id: shell-lint
   - repo: https://github.com/ambv/black
