@@ -5,6 +5,7 @@
 .DS_Store
 .idea
 .mypy_cache
+.requirements
 .tox
 .vscode
 Pipfile.lock
