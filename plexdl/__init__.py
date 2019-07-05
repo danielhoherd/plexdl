@@ -4,7 +4,7 @@ import requests
 from plexapi.myplex import MyPlexAccount
 from plexapi.server import PlexServer
 
-logging.basicConfig(format="%(asctime)s %(levelname)s: %(message)s", datefmt="%FT%T%z", level="WARN")
+log = logging.getLogger("plexdl")
 
 
 class Client:
@@ -28,8 +28,8 @@ class Client:
                 download_url = item._server.url(f"{location.key}?download=1&X-Plex-Token={access_token}")
                 print(f'        curl -o "{item.title}.{location.container}" "{download_url}"')
 
-    def main(self, username, password, title):
-        account = MyPlexAccount(username, password)
+    def main(self, **kwargs):
+        account = MyPlexAccount(kwargs["username"], kwargs["password"])
         available_resources = list()
 
         for r in account.resources():
@@ -46,15 +46,19 @@ class Client:
                     this_server = PlexServer(connection.uri, this_resource.accessToken)
                     relay_status = ""
                     if connection.relay:
-                        relay_status = " (relay)"
+                        if kwargs["relay"] is False:
+                            log.debug(f"Skipping {this_server.friendlyName} relay")
+                            continue
+                        else:
+                            relay_status = " (relay)"
                     print(
                         f'\nServer: "{this_server.friendlyName}"{relay_status}\n'
                         f'Plex version: {this_server.version}\n"'
                         f"OS: {this_server.platform} {this_server.platformVersion}"
                     )
-                    for item in this_server.search(title, mediatype="movie"):
+                    for item in this_server.search(kwargs["title"]):
                         self.print_item_info(item, this_resource.accessToken)
             except (requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout) as e:
                 print(f'ERROR: connection to "{this_resource.name}" failed.')
-                logging.debug(e)
+                log.debug(e)
                 continue

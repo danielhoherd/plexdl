@@ -4,20 +4,25 @@ verify_ssl = true
 name = "pypi"
 
 [dev-packages]
+black = "*"
+bpython = "*"
 flake8 = "*"
 plexdl = {editable = true,path = "."}
 
 [packages]
-blessings = ">=1.6"
-bpython = "*"
-certifi = ">=2017.7.27.1"
-chardet = ">=3.0.4"
-curtsies = ">=0.2.11"
-greenlet = ">=0.4.12"
-idna = ">=2.6"
-PlexAPI = "*"
-Pygments = ">=2.2.0"
-requests = ">=2.20.0"
+"blessings" = ">=1.6"
+"certifi" = ">=2017.7.27.1"
+"chardet" = ">=3.0.4"
+"curtsies" = ">=0.2.11"
+"greenlet" = ">=0.4.12"
+"idna" = ">=2.6"
+"PlexAPI" = "*"
+"Pygments" = ">=2.2.0"
+"requests" = ">=2.20.0"
 "urllib3" = ">=1.23"
-wcwidth = ">=0.1.7"
-websocket-client = ">=0.44.0"
+"wcwidth" = ">=0.1.7"
+"websocket-client" = ">=0.44.0"
+click = "*"
+
+[pipenv]
+allow_prereleases = true
