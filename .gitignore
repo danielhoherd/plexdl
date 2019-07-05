@@ -3,10 +3,14 @@
 *.pyc
 *.sw?
 .DS_Store
+.env
 .idea
 .mypy_cache
+.requirements*
 .tox
 .vscode
 Pipfile.lock
 __pycache__
+dev.env
 env
+pip-wheel-metadata

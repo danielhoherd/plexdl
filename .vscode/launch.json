@@ -1,0 +1,18 @@
+// https://json5.org
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: plexdl",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/plexdl/cli.py",
+            "console": "integratedTerminal",
+            // Add PLEXDL_USER and PLEXDL_PASS to dev.env
+            "envFile": "dev.env",
+            "args": [
+                "robot"
+            ]
+        }
+    ]
+}
