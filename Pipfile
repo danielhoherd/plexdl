@@ -4,6 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [dev-packages]
+flake8 = "*"
+plexdl = {editable = true,path = "."}
 
 [packages]
 blessings = ">=1.6"
