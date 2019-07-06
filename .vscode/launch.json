@@ -8,11 +8,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/plexdl/cli.py",
             "console": "integratedTerminal",
-            // Add PLEXDL_USER and PLEXDL_PASS to dev.env
+            // Add PLEXDL_USER, PLEXDL_PASS, PLEXDL_TITLE to dev.env
+            // bash: source dev.env && export "${!PLEXDL_@}"
             "envFile": "dev.env",
-            "args": [
-                "robot"
-            ]
         }
     ]
 }

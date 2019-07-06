@@ -46,7 +46,7 @@ test: ## Run tests
 	tox
 
 .PHONY: requirements-dev
-requirements-dev: .requirements ## Install dev requirements
+requirements-dev: .requirements-dev ## Install dev requirements
 .requirements-dev:
 	pip3 install --user --upgrade pipenv
 	pipenv --three install --dev

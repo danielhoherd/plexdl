@@ -23,6 +23,7 @@ plexdl = {editable = true,path = "."}
 "wcwidth" = ">=0.1.7"
 "websocket-client" = ">=0.44.0"
 click = "*"
+attr = "*"
 
 [pipenv]
 allow_prereleases = true

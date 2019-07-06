@@ -18,7 +18,7 @@ setup(
         "Environment :: Console",
         "License :: OSI Approved :: UNLICENSE License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
         "Topic :: Utilities",
     ],
     packages=find_packages(exclude=("tests*", "testing*")),
