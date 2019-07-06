@@ -23,41 +23,47 @@ pip3 install ./plexdl
 
 ```
 $ plexdl --help
-usage: plexdl [-h] [--debug] --username USERNAME --password PASSWORD title
+Usage: plexdl [OPTIONS] TITLE
 
-Search your Plex libraries and show download URLs
+  Searches your plex account for media matching the given string, then
+  prints out download commands.
 
-positional arguments:
-  title                Title to search for
-
-optional arguments:
-  -h, --help           show this help message and exit
-  --debug              Enable debug output
-  --username USERNAME  Your plex username
-  --password PASSWORD  Your plex password
+Options:
+  -v                        Increase verbosity (max -vvvv)
+  -u, --username TEXT       Your Plex username (env PLEXDL_USER)
+  -p, --password TEXT       Your Plex password (env PLEXDL_PASS)
+  -r, --relay / --no-relay  Output relay servers along with direct servers
+  --help                    Show this message and exit.
 $ export PLEXDL_USER='foo'
 $ export PELXDL_PASS='bar'
-$ plexdl --username="${PLEXDL_USER}" --password="${PELXDL_PASS}" farm
+===============================================================================
+Server: "demo-server"
+Plex version: 1.16.1.1246-1d09ac057
+"OS: Linux 3.16.0-4-amd64
+-------------------------------------------------------------------------------
+Show: Planet Earth II
+Summary: David Attenborough presents a documentary series exploring how animals meet the challenges of surviving in the most iconic habitats on earth.
 
-Searching server: "Plex Cloud"
-  Plex version: 1.5.2.246-1a7319ace
-  OS: Cloud 0.1
 
-Searching server: "plata"
-  Plex version: 1.9.2.4285-9f65b88ae
-  OS: Linux 4.10.0-22-generic (#24~16.04.1-Ubuntu SMP Tue May 23 17:03:51 UTC 2017)
-    Farmer Chords mp3
-        curl -o "Farmer Chords.mp3" "https://..."
-    Old MacDonald Had a Farm aac
-        curl -o "Old MacDonald Had a Farm.mp4" "https://..."
-    Combination Squares; Farmed Shrimp; Ball Valves; String Trimmers 1280x720 h264 ac3
-        curl -o "Combination Squares; Farmed Shrimp; Ball Valves; String Trimmers.mkv" "https://..."
+        curl -o "Islands.mkv" "https://127-0-0-1.0123456789abcd...
+        curl -o "Mountains.mkv" "https://127-0-0-1.0123456789abcd...
+        curl -o "Jungles.mkv" "https://127-0-0-1.0123456789abcd...
+        curl -o "Deserts.mkv" "https://127-0-0-1.0123456789abcd...
+        curl -o "Grasslands.mkv" "https://127-0-0-1.0123456789abcd...
+        curl -o "Cities.mkv" "https://127-0-0-1.0123456789abcd...
+-------------------------------------------------------------------------------
+Movie: The Man from Earth
+Summary: An impromptu goodbye party for Professor John Oldman becomes a mysterious interrogation after the retiring scholar reveals to his colleagues he never ages and has walked the earth for 14,000 years.
+        curl -o "The Man from Earth.avi" "https://127-0-0-1.0123456789abcd...
+-------------------------------------------------------------------------------
+Movie: Journey to the Center of the Earth
+Summary: An Edinburgh professor and assorted colleagues follow an explorer's trail down an extinct Icelandic volcano to the earth's center.
+        curl -o "Journey to the Center of the Earth.mp4" "https://127-0-0-1.0123456789abcd...
 ```
 
 # TODO
 
-- Make this work with pipenv
 - cleanup
 - tests
-- make search type limited to movies, maybe add option to search for specific types
+- add option to search for specific types of content
 - don't try to name files with characters that would be invalid
