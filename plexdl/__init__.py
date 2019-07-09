@@ -1,4 +1,5 @@
 import logging
+from typing import List
 
 import requests
 from plexapi.myplex import MyPlexAccount
@@ -18,7 +19,7 @@ class Client(object):
         self.debug = kwargs["debug"]
         self.account = MyPlexAccount(self.username, self.password)
 
-    available_servers = []
+    available_servers: List[PlexServer] = list()
 
     @staticmethod
     def print_item_info(self, item, access_token):
@@ -38,7 +39,11 @@ class Client(object):
                 if len(media_info) > 0:
                     print(f'({", ".join(media_info)})')
                 download_url = item._server.url(f"{location.key}?download=1&X-Plex-Token={access_token}")
-                print(f'        curl -o "{item.title}.{location.container}" "{download_url}"')
+                download_filename = ""
+                if hasattr(item, "seasonEpisode"):
+                    download_filename += f"{item.seasonEpisode} "
+                download_filename += f"{item.title}.{location.container}"
+                print(f'        curl -o "{download_filename}" "{download_url}"')
 
     @staticmethod
     def print_all_items_for_server(self, item, access_token):
@@ -51,8 +56,8 @@ class Client(object):
         if item.TYPE in ["show"]:
             print("-" * 79)
             print(f"{item.TYPE.capitalize()}: {item.title}\nSummary: {item.summary}")
-            for item in item.episodes():
-                self.print_item_info(self, item, access_token)
+            for episode in item.episodes():
+                self.print_item_info(self, episode, access_token)
 
     def main(self):
         for r in self.account.resources():

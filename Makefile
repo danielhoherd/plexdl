@@ -22,6 +22,7 @@ docker-build: ## Build the Dockerfile found in PWD
 	docker build --no-cache="${NO_CACHE}" \
 		-t "${IMAGE_NAME}:latest" \
 		-t "${IMAGE_NAME}:${BUILD_TIME}" \
+		-t "${IMAGE_NAME}:${GIT_BRANCH}" \
 		-t "${IMAGE_NAME}:${GIT_BRANCH}-${GIT_SHA_SHORT}" \
 		--label "${ORG_PREFIX}.repo.origin=${GIT_ORIGIN}" \
 		--label "${ORG_PREFIX}.repo.branch=${GIT_BRANCH}" \
