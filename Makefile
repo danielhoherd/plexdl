@@ -12,6 +12,7 @@ GIT_ORIGIN      = $(shell git config --get remote.origin.url)
 GIT_BRANCH      = $(shell git rev-parse --abbrev-ref HEAD)
 GIT_SHA_SHORT   = $(shell if [ ! -z "`git status --porcelain`" ] ; then echo "DIRTY" ; else git rev-parse --short HEAD ; fi)
 BUILD_TIME      = $(shell date '+%s')
+BUILD_DATE      = $(shell date '+%F')
 
 
 .PHONY: all
@@ -21,7 +22,7 @@ all: docker-build
 docker-build: ## Build the Dockerfile found in PWD
 	docker build --no-cache="${NO_CACHE}" \
 		-t "${IMAGE_NAME}:latest" \
-		-t "${IMAGE_NAME}:${BUILD_TIME}" \
+		-t "${IMAGE_NAME}:${BUILD_DATE}" \
 		-t "${IMAGE_NAME}:${GIT_BRANCH}" \
 		-t "${IMAGE_NAME}:${GIT_BRANCH}-${GIT_SHA_SHORT}" \
 		--label "${ORG_PREFIX}.repo.origin=${GIT_ORIGIN}" \
