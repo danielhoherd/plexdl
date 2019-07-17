@@ -13,14 +13,15 @@ class Client(object):
 
     def __init__(self, **kwargs):
         self.debug = kwargs["debug"]
-        self.password = kwargs["password"]
-        self.relay = kwargs["relay"]
-        self.summary = kwargs["summary"]
-        self.ratings = kwargs["ratings"]
+        self.item_prefix = kwargs["item_prefix"]
         self.metadata = kwargs["metadata"]
+        self.password = kwargs["password"]
+        self.ratings = kwargs["ratings"]
+        self.relay = kwargs["relay"]
+        self.server_info = kwargs["server_info"]
+        self.summary = kwargs["summary"]
         self.title = kwargs["title"]
         self.username = kwargs["username"]
-        self.server_info = kwargs["server_info"]
         self.account = MyPlexAccount(self.username, self.password)
 
     available_servers: List[PlexServer] = list()
@@ -47,7 +48,7 @@ class Client(object):
                 if hasattr(item, "seasonEpisode"):
                     download_filename += f"{item.seasonEpisode} "
                 download_filename += f"{item.title}.{location.container}"
-                print(f'        "{download_filename}" "{download_url}"')
+                print(f'  {self.item_prefix} "{download_filename}" "{download_url}"')
 
     @staticmethod
     def print_all_items_for_server(self, item, access_token):
