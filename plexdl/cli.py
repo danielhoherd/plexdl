@@ -22,14 +22,24 @@ def get_logger(ctx, param, value):
 @option("-u", "--username", help="Your Plex username (env PLEXDL_USER)", envvar="PLEXDL_USER")
 @option("-p", "--password", help="Your Plex password (env PLEXDL_PASS)", envvar="PLEXDL_PASS")
 @option("-r", "--relay/--no-relay", default=False, help="Output relay servers along with direct servers")
-@option("--summary/--no-summary", default=False, help="Output summary about each movie, show, etc..")
-@option("--server-info/--no-server-info", default=False, help="Output summary about each server. (OS, Plex Server version, etc..)")
+@option("--server-info/--no-server-info", default=False, help="Output summary about each server")
+@option("--summary/--no-summary", default=False, help="Output summary about each result")
+@option("--ratings/--no-ratings", default=False, help="Output rating information for each result")
+@option("--metadata/--metadata-info", default=False, help="Output media metadata about each file for each result")
 @argument("title", envvar="PLEXDL_TITLE")
-def main(username, password, title, relay, summary, server_info, v):
+def main(username, password, title, relay, server_info, summary, ratings, metadata, v):
     """Searches your plex account for media matching the given string, then prints out download commands."""
 
     p = plexdl.Client(
-        username=username, password=password, title=title, relay=relay, debug=v, summary=summary, server_info=server_info
+        username=username,
+        password=password,
+        title=title,
+        relay=relay,
+        debug=v,
+        server_info=server_info,
+        summary=summary,
+        ratings=ratings,
+        metadata=metadata,
     )
     try:
         p.main()

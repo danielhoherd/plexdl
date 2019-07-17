@@ -16,6 +16,8 @@ class Client(object):
         self.password = kwargs["password"]
         self.relay = kwargs["relay"]
         self.summary = kwargs["summary"]
+        self.ratings = kwargs["ratings"]
+        self.metadata = kwargs["metadata"]
         self.title = kwargs["title"]
         self.username = kwargs["username"]
         self.server_info = kwargs["server_info"]
@@ -29,7 +31,7 @@ class Client(object):
             locations = [i for i in item.iterParts() if i]
             for location in locations:
                 media_info = []
-                if self.debug > 0:
+                if self.metadata is True:
                     if item.media[0].width is not None:
                         media_info.append(f"{item.media[0].width}x{item.media[0].height}")
                     if item.media[0].videoCodec is not None:
@@ -54,11 +56,20 @@ class Client(object):
             print(f"{item.TYPE.capitalize()}: {item.title}")
             if self.summary is True and len(item.summary) > 1:
                 print(f"Summary: {item.summary}")
+            if self.ratings is True:
+                if item.audienceRating:
+                    print(f"Audience rating: {item.audienceRating}")
+                if item.rating:
+                    print(f"Critic rating: {item.rating}")
+                if item.contentRating:
+                    print(f"Rated: {item.contentRating}")
             self.print_item_info(self, item, access_token)
         elif item.TYPE in ["show"]:
             print("-" * 79)
             if self.summary is True and len(item.summary) > 1:
                 print(f"{item.TYPE.capitalize()}: {item.title}\nSummary: {item.summary}")
+            if self.ratings is True:
+                print(f"Audience rating: {item.audienceRating}\nCritic rating: {item.rating}\nRated: {item.contentRating}")
             for episode in item.episodes():
                 self.print_item_info(self, episode, access_token)
 
