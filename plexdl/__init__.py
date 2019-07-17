@@ -12,11 +12,13 @@ class Client(object):
     """A client interface to plex for finding direct download URLs"""
 
     def __init__(self, **kwargs):
-        self.username = kwargs["username"]
-        self.password = kwargs["password"]
-        self.title = kwargs["title"]
-        self.relay = kwargs["relay"]
         self.debug = kwargs["debug"]
+        self.password = kwargs["password"]
+        self.relay = kwargs["relay"]
+        self.summary = kwargs["summary"]
+        self.title = kwargs["title"]
+        self.username = kwargs["username"]
+        self.server_info = kwargs["server_info"]
         self.account = MyPlexAccount(self.username, self.password)
 
     available_servers: List[PlexServer] = list()
@@ -43,19 +45,20 @@ class Client(object):
                 if hasattr(item, "seasonEpisode"):
                     download_filename += f"{item.seasonEpisode} "
                 download_filename += f"{item.title}.{location.container}"
-                print(f'        curl -o "{download_filename}" "{download_url}"')
+                print(f'        "{download_filename}" "{download_url}"')
 
     @staticmethod
     def print_all_items_for_server(self, item, access_token):
         if item.TYPE in ["movie", "track"]:
             print("-" * 79)
             print(f"{item.TYPE.capitalize()}: {item.title}")
-            if len(item.summary) > 1:
+            if self.summary is True and len(item.summary) > 1:
                 print(f"Summary: {item.summary}")
             self.print_item_info(self, item, access_token)
-        if item.TYPE in ["show"]:
+        elif item.TYPE in ["show"]:
             print("-" * 79)
-            print(f"{item.TYPE.capitalize()}: {item.title}\nSummary: {item.summary}")
+            if self.summary is True and len(item.summary) > 1:
+                print(f"{item.TYPE.capitalize()}: {item.title}\nSummary: {item.summary}")
             for episode in item.episodes():
                 self.print_item_info(self, episode, access_token)
 
@@ -81,11 +84,12 @@ class Client(object):
                             relay_status = " (relay)"
                     print("\n")
                     print("=" * 79)
-                    print(
-                        f'Server: "{this_server_connection.friendlyName}"{relay_status}\n'
-                        f'Plex version: {this_server_connection.version}\n"'
-                        f"OS: {this_server_connection.platform} {this_server_connection.platformVersion}"
-                    )
+                    print(f'Server: "{this_server_connection.friendlyName}"{relay_status}')
+                    if self.server_info is True:
+                        print(
+                            f'Plex version: {this_server_connection.version}\n"'
+                            f"OS: {this_server_connection.platform} {this_server_connection.platformVersion}"
+                        )
 
                     # TODO: add flags for each media type to help sort down what is displayed (since /hub/seach?mediatype="foo" doesn't work)
                     # TODO: write handlers for each type

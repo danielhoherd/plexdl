@@ -22,11 +22,15 @@ def get_logger(ctx, param, value):
 @option("-u", "--username", help="Your Plex username (env PLEXDL_USER)", envvar="PLEXDL_USER")
 @option("-p", "--password", help="Your Plex password (env PLEXDL_PASS)", envvar="PLEXDL_PASS")
 @option("-r", "--relay/--no-relay", default=False, help="Output relay servers along with direct servers")
+@option("--summary/--no-summary", default=False, help="Output summary about each movie, show, etc..")
+@option("--server-info/--no-server-info", default=False, help="Output summary about each server. (OS, Plex Server version, etc..)")
 @argument("title", envvar="PLEXDL_TITLE")
-def main(username, password, title, relay, v):
+def main(username, password, title, relay, summary, server_info, v):
     """Searches your plex account for media matching the given string, then prints out download commands."""
 
-    p = plexdl.Client(username=username, password=password, title=title, relay=relay, debug=v)
+    p = plexdl.Client(
+        username=username, password=password, title=title, relay=relay, debug=v, summary=summary, server_info=server_info
+    )
     try:
         p.main()
     except KeyboardInterrupt:
