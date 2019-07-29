@@ -29,36 +29,48 @@ Usage: plexdl [OPTIONS] TITLE
   prints out download commands.
 
 Options:
-  -v                        Increase verbosity (max -vvvv)
-  -u, --username TEXT       Your Plex username (env PLEXDL_USER)
-  -p, --password TEXT       Your Plex password (env PLEXDL_PASS)
-  -r, --relay / --no-relay  Output relay servers along with direct servers
-  --help                    Show this message and exit.
-$ export PLEXDL_USER='foo'
-$ export PELXDL_PASS='bar'
+  -v                              Increase verbosity (max -vvvv)
+  -u, --username TEXT             Your Plex username (env PLEXDL_USER)
+  -p, --password TEXT             Your Plex password (env PLEXDL_PASS)
+  -r, --relay / --no-relay        Output relay servers along with direct
+                                  servers
+  --item-prefix TEXT              String to prefix to each item (eg: curl -o)
+  --server-info / --no-server-info
+                                  Output summary about each server
+  --summary / --no-summary        Output summary about each result
+  --ratings / --no-ratings        Output rating information for each result
+  --metadata / --no-metadata      Output media metadata about each file for
+                                  each result
+  --help                          Show this message and exit.$ export PLEXDL_USER='foo'
+```
+```
+$ plexdl automobile
 ===============================================================================
-Server: "demo-server"
-Plex version: 1.16.1.1246-1d09ac057
-"OS: Linux 3.16.0-4-amd64
+Server: "demo-server-1"
 -------------------------------------------------------------------------------
-Show: Planet Earth II
-Summary: David Attenborough presents a documentary series exploring how animals meet the challenges of surviving in the most iconic habitats on earth.
-
-
-        curl -o "Islands.mkv" "https://127-0-0-1.0123456789abcd...
-        curl -o "Mountains.mkv" "https://127-0-0-1.0123456789abcd...
-        curl -o "Jungles.mkv" "https://127-0-0-1.0123456789abcd...
-        curl -o "Deserts.mkv" "https://127-0-0-1.0123456789abcd...
-        curl -o "Grasslands.mkv" "https://127-0-0-1.0123456789abcd...
-        curl -o "Cities.mkv" "https://127-0-0-1.0123456789abcd...
+Movie: Planes, Trains and Automobiles
+   "Planes, Trains and Automobiles.mkv" "https://...some_url..."
+```
+```
+$ plexdl --ratings --metadata --summary flower
+===============================================================================
+Server: "demo-server-2"
 -------------------------------------------------------------------------------
-Movie: The Man from Earth
-Summary: An impromptu goodbye party for Professor John Oldman becomes a mysterious interrogation after the retiring scholar reveals to his colleagues he never ages and has walked the earth for 14,000 years.
-        curl -o "The Man from Earth.avi" "https://127-0-0-1.0123456789abcd...
+Movie: Back to the Future: Part II
+Summary: After visiting 2015, Marty McFly must repeat his visit to 1955 to prevent disastrous changes to 1985... without interfering with his first trip.
+Audience rating: 8.5
+Critic rating: 6.3
+Rated: PG
+(1280x688, h264, ac3, 4005kbps)
+   "Back to the Future: Part II.mp4" "https://...some_url..."
 -------------------------------------------------------------------------------
-Movie: Journey to the Center of the Earth
-Summary: An Edinburgh professor and assorted colleagues follow an explorer's trail down an extinct Icelandic volcano to the earth's center.
-        curl -o "Journey to the Center of the Earth.mp4" "https://127-0-0-1.0123456789abcd...
+Movie: Back to the Future
+Summary: A teenager is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his friend, Dr. Emmett Brown, and must make sure his high-school-age parents unite in order to save his own existence.
+Audience rating: 9.4
+Critic rating: 9.6
+Rated: PG
+(1280x688, h264, ac3, 5043kbps)
+   "Back to the Future.mp4" "https://...some_url..."
 ```
 
 # TODO
