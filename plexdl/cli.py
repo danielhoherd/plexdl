@@ -7,6 +7,7 @@ from click import argument
 from click import command
 from click import echo
 from click import option
+from click import version_option
 
 import plexdl
 
@@ -16,13 +17,6 @@ def get_logger(ctx, param, value):
     log = logging.getLogger("plexdl")
     log.setLevel(50 - (value * 10))  # https://docs.python.org/3.7/library/logging.html#logging-levels
     return value
-
-
-def print_version(ctx, param, value):
-    if not value or ctx.resilient_parsing:
-        return
-    echo("0.1.0")
-    ctx.exit()
 
 
 @command()
@@ -35,7 +29,7 @@ def print_version(ctx, param, value):
 @option("--summary/--no-summary", default=False, help="Output summary about each result")
 @option("--ratings/--no-ratings", default=False, help="Output rating information for each result")
 @option("--metadata/--no-metadata", default=False, help="Output media metadata about each file for each result")
-@option("--version", is_flag=True, callback=print_version, expose_value=False, is_eager=True, help="Print version and exit")
+@version_option(version="0.1.0")
 @argument("title", envvar="PLEXDL_TITLE")
 def main(username, password, title, relay, server_info, item_prefix, summary, ratings, metadata, v):
     """Searches your plex account for media matching the given string, then prints out download commands."""
