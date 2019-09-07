@@ -10,7 +10,7 @@ repos:
     hooks:
       - id: black
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.16.0
+    rev: v1.17.0
     hooks:
       - id: yamllint
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -24,6 +24,7 @@ repos:
       - id: check-yaml
         args: ['--allow-multiple-documents']
       - id: debug-statements
+      - id: detect-private-key
       - id: end-of-file-fixer
       - id: flake8
       - id: mixed-line-ending
@@ -37,7 +38,7 @@ repos:
       - id: mypy
         args: ['--no-strict-optional', '--ignore-missing-imports', '--python-version', '3.7']
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.6
+    rev: v1.1.7
     hooks:
       - id: remove-tabs
         exclude_types: [makefile, binary]
