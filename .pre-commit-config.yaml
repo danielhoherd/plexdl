@@ -5,6 +5,15 @@ repos:
     rev: v1.6.1
     hooks:
       - id: reorder-python-imports
+  - repo: local
+    hooks:
+      - id: flynt
+        name: flynt
+        entry: flynt
+        args: ['--fail-on-change', '--quiet']
+        types: [python]
+        language: python
+        additional_dependencies: ['flynt']
   - repo: https://github.com/ambv/black
     rev: 19.3b0
     hooks:
