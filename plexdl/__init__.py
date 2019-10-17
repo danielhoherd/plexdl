@@ -1,3 +1,4 @@
+import locale
 import logging
 from typing import List
 
@@ -6,6 +7,7 @@ from plexapi.myplex import MyPlexAccount
 from plexapi.server import PlexServer
 
 log = logging.getLogger("plexdl")
+locale.setlocale(locale.LC_ALL, "")
 
 
 class Client(object):
@@ -32,6 +34,11 @@ class Client(object):
             locations = [i for i in item.iterParts() if i]
             for location in locations:
                 media_info = []
+                download_url = item._server.url(f"{location.key}?download=1&X-Plex-Token={access_token}")
+                download_filename = ""
+                if hasattr(item, "seasonEpisode"):
+                    download_filename += f"{item.seasonEpisode} "
+                download_filename += f"{item.title}.{location.container}"
                 if self.metadata is True:
                     if item.media[0].width is not None:
                         media_info.append(f"{item.media[0].width}x{item.media[0].height}")
@@ -41,13 +48,13 @@ class Client(object):
                         media_info.append(item.media[0].audioCodec)
                     if item.media[0].bitrate is not None:
                         media_info.append(f"{item.media[0].bitrate}kbps")
+                    try:
+                        length = int(requests.head(download_url).headers["Content-Length"])
+                        media_info.append(f"{length:n} bytes")
+                    except ValueError:
+                        pass
                 if len(media_info) > 0:
                     print(f'({", ".join(media_info)})')
-                download_url = item._server.url(f"{location.key}?download=1&X-Plex-Token={access_token}")
-                download_filename = ""
-                if hasattr(item, "seasonEpisode"):
-                    download_filename += f"{item.seasonEpisode} "
-                download_filename += f"{item.title}.{location.container}"
                 print(f'  {self.item_prefix} "{download_filename}" "{download_url}"')
 
     @staticmethod
