@@ -23,6 +23,7 @@ plexdl = {editable = true,path = "."}
 "urllib3" = ">=1.23"
 "wcwidth" = ">=0.1.7"
 "websocket-client" = ">=0.44.0"
+plexdl = {path = "."}
 
 [pipenv]
 allow_prereleases = true

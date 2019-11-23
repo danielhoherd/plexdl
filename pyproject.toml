@@ -1,3 +1,40 @@
-# https://github.com/ambv/black#configuration-format
+[tool.poetry]
+name = "plexdl"
+version = "0.1.0"
+description = ""
+authors = ["Daniel Hoherd <daniel.hoherd@gmail.com>"]
+license = "UNLICENSE"
+classifiers=[
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "License :: OSI Approved :: UNLICENSE License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Topic :: Utilities",
+]
+
+[tool.poetry.scripts]
+plexdl = 'plexdl.cli:main'
+
+[tool.poetry.dependencies]
+python = "^3.7"
+click = "^7.0"
+PlexAPI = "^3.2.0"
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+bpython = "^0.18"
+flake8 = "^3.7.9"
+dephell = "^0.7.8"
+
 [tool.black]
+# https://github.com/ambv/black#configuration-format
 line-length = 132
+
+[build-system]
+requires = ["poetry>=1.0.0b6"]
+build-backend = "poetry.masonry.api"
+
+[tool.dephell.main]
+from = {format = "poetry", path = "pyproject.toml"}
+to = {format = "setuppy", path = "setup.py"}

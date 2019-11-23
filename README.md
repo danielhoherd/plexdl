@@ -9,7 +9,7 @@ The purpose of this tool is to allow you to download non-transcoded media from P
 export PLEXDL_USER=whoever
 export PLEXDL_PASS=hunter2
 alias plexdl='docker run --rm -e PLEXDL_USER -e PLEXDL_PASS danielhoherd/plexdl plexdl'
-plexdl <movie_name>
+plexdl $movie_title
 ```
 
 # Local Installation
@@ -43,6 +43,7 @@ Options:
                                   each result
   --help                          Show this message and exit.$ export PLEXDL_USER='foo'
 ```
+
 ```
 $ plexdl automobile
 ===============================================================================

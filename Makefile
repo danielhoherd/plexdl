@@ -2,8 +2,7 @@
 
 .PHONY: help
 help: ## Print Makefile help
-	@grep -Eh '^[a-zA-Z_-]+:.*?## .*$$' ${MAKEFILE_LIST} | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-18s\033[0m %s\n", $$1, $$2}'
-
+	@grep -Eh '^[a-z.A-Z_0-9-]+:.*?## .*$$' ${MAKEFILE_LIST} | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-18s\033[0m %s\n", $$1, $$2}'
 
 IMAGE_NAME     ?= danielhoherd/plexdl
 NO_CACHE       ?= false
@@ -19,7 +18,7 @@ BUILD_DATE      = $(shell date '+%F')
 all: docker-build
 
 .PHONY: docker-build
-docker-build: ## Build the Dockerfile found in PWD
+docker-build: wheel ## Build the Dockerfile found in PWD
 	docker build --no-cache="${NO_CACHE}" \
 		-t "${IMAGE_NAME}:latest" \
 		-t "${IMAGE_NAME}:${BUILD_DATE}" \
@@ -41,7 +40,12 @@ clean: ## Clean build artifacts and delete virtualenv
 	rm -f .requirements-dev .requirements || true
 	find . -name '*.pyc' -delete
 	find . -name '__pycache__' -delete
-	pipenv --rm || true
+	rm -rf dist
+	poetry env list 2>/dev/null | awk '{print $$1}' | xargs -n1 poetry env remove || true
+
+.PHONY: wheel
+wheel: ## Build a wheel
+	poetry build -f wheel
 
 .PHONY: test
 test: ## Run tests
@@ -50,13 +54,17 @@ test: ## Run tests
 .PHONY: requirements-dev
 requirements-dev: .requirements-dev ## Install dev requirements
 .requirements-dev:
-	pip3 install --user --upgrade pipenv
-	pipenv --three install --dev
+	pip3 install --user --upgrade poetry
+	poetry install
 	touch .requirements-dev .requirements
 
 .PHONY: requirements
 requirements: .requirements ## Install requirements
 .requirements:
-	pip3 install --user --upgrade pipenv
-	pipenv --three install
+	pip3 install --user --upgrade poetry
+	poetry install --no-dev
 	touch .requirements
+
+.PHONY: generate-setup.py
+generate-setup.py: ## Generate the setup.py file from pyproject.toml
+	poetry run -- dephell deps convert --from pyproject.toml --from-format poetry --to setup.py --to-format setuppy
