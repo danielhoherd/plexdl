@@ -24,7 +24,7 @@ repos:
       - id: bandit
         args: ['-s', 'B101']
   - repo: https://github.com/PyCQA/pydocstyle
-    rev: 4.0.1
+    rev: 5.0.1
     hooks:
       - id: pydocstyle
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -49,7 +49,7 @@ repos:
       - id: sort-simple-yaml
       - id: trailing-whitespace
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.740
+    rev: v0.761
     hooks:
       - id: mypy
         args: ['--no-strict-optional', '--ignore-missing-imports', '--python-version', '3.7']
@@ -63,7 +63,7 @@ repos:
       - id: remove-tabs
         exclude_types: [makefile, binary]
   - repo: https://github.com/danielhoherd/pre-commit-hooks
-    rev: 1a8d3b95b329e8aecd81ce0620a220f4053b46f0
+    rev: d0ec497c80183b0e8b19216154c26a956103a416
     hooks:
       - id: CVE-2017-18342
       - id: remove-unicode-non-breaking-spaces

@@ -28,7 +28,7 @@ flake8 = "^3.7.9"
 dephell = "^0.7.8"
 
 [tool.black]
-# https://github.com/ambv/black#configuration-format
+# https://github.com/psf/black#configuration-format
 line-length = 132
 
 [build-system]
