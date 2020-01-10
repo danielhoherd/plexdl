@@ -2,7 +2,7 @@
 exclude: '(venv|.vscode)'  # regex
 repos:
   - repo: https://github.com/asottile/reorder_python_imports
-    rev: v1.8.0
+    rev: v1.9.0
     hooks:
       - id: reorder-python-imports
   - repo: local
@@ -24,7 +24,7 @@ repos:
       - id: bandit
         args: ['-s', 'B101']
   - repo: https://github.com/PyCQA/pydocstyle
-    rev: 5.0.1
+    rev: 5.0.2
     hooks:
       - id: pydocstyle
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -54,7 +54,7 @@ repos:
       - id: mypy
         args: ['--no-strict-optional', '--ignore-missing-imports', '--python-version', '3.7']
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.19.0
+    rev: v1.20.0
     hooks:
       - id: yamllint
   - repo: https://github.com/Lucas-C/pre-commit-hooks

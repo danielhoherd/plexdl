@@ -32,7 +32,7 @@ dephell = "^0.7.8"
 line-length = 132
 
 [build-system]
-requires = ["poetry>=1.0.0"]
+requires = ["poetry>=1.0.2"]
 build-backend = "poetry.masonry.api"
 
 [tool.dephell.main]
