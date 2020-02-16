@@ -1,7 +1,9 @@
+"""plexdl client class."""
 import locale
 import logging
 from typing import List
 
+import humanfriendly
 import requests
 from plexapi.myplex import MyPlexAccount
 from plexapi.server import PlexServer
@@ -11,9 +13,10 @@ locale.setlocale(locale.LC_ALL, "")
 
 
 class Client(object):
-    """A client interface to plex for finding direct download URLs"""
+    """A client interface to plex for finding direct download URLs."""
 
     def __init__(self, **kwargs):
+        """plexdl.Client __init__ method."""
         self.debug = kwargs["debug"]
         self.item_prefix = kwargs["item_prefix"]
         self.metadata = kwargs["metadata"]
@@ -30,6 +33,7 @@ class Client(object):
 
     @staticmethod
     def print_item_info(self, item, access_token):
+        """Print info about a given media item."""
         if hasattr(item, "iterParts"):
             locations = [i for i in item.iterParts() if i]
             for location in locations:
@@ -49,8 +53,8 @@ class Client(object):
                     if item.media[0].bitrate is not None:
                         media_info.append(f"{item.media[0].bitrate}kbps")
                     try:
-                        length = int(requests.head(download_url).headers["Content-Length"])
-                        media_info.append(f"{length:n} bytes")
+                        length = humanfriendly.format_size(int(requests.head(download_url).headers["Content-Length"]))
+                        media_info.append(f"{length}")
                     except ValueError:
                         pass
                 if len(media_info) > 0:
@@ -59,6 +63,7 @@ class Client(object):
 
     @staticmethod
     def print_all_items_for_server(self, item, access_token):
+        """Print info about all media items discovered on a given Plex server."""
         if item.TYPE in ["movie", "track"]:
             print("-" * 79)
             print(f"{item.TYPE.capitalize()}: {item.title}")
@@ -82,6 +87,7 @@ class Client(object):
                 self.print_item_info(self, episode, access_token)
 
     def main(self):
+        """Perform all search and print logic."""
         for r in self.account.resources():
             if r.product == "Plex Media Server":
                 self.available_servers.append(r)

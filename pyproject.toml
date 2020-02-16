@@ -20,21 +20,20 @@ plexdl = 'plexdl.cli:main'
 python = "^3.7"
 click = "^7.0"
 PlexAPI = "^3.2"
+humanfriendly = "^7.0"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
 bpython = "^0.18"
 flake8 = "^3.7"
-dephell = "^0.7"
 
 [tool.black]
 # https://github.com/psf/black#configuration-format
 line-length = 132
 
-[build-system]
-requires = ["poetry>=1.0.2"]
-build-backend = "poetry.masonry.api"
-
 [tool.dephell.main]
 from = {format = "poetry", path = "pyproject.toml"}
 to = {format = "setuppy", path = "setup.py"}
+[build-system]
+requires = ["poetry>=1.0.2"]
+build-backend = "poetry.masonry.api"
