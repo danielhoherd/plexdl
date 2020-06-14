@@ -1,3 +1,4 @@
+"""plexdl CLI."""
 import logging
 import os
 import sys
@@ -8,11 +9,15 @@ from click import command
 from click import echo
 from click import option
 from click import version_option
+from importlib_metadata import version
+
+__version__ = version(__package__)
 
 import plexdl
 
 
 def get_logger(ctx, param, value):
+    """Get logger and return verbosity value."""
     logging.basicConfig(format="%(asctime)s %(levelname)s: %(message)s", datefmt="%FT%T%z")
     log = logging.getLogger("plexdl")
     log.setLevel(50 - (value * 10))  # https://docs.python.org/3.7/library/logging.html#logging-levels
@@ -29,11 +34,10 @@ def get_logger(ctx, param, value):
 @option("--summary/--no-summary", default=False, help="Output summary about each result")
 @option("--ratings/--no-ratings", default=False, help="Output rating information for each result")
 @option("--metadata/--no-metadata", default=False, help="Output media metadata about each file for each result")
-@version_option(version="0.1.0")
+@version_option(version=__version__)
 @argument("title", envvar="PLEXDL_TITLE")
 def main(username, password, title, relay, server_info, item_prefix, summary, ratings, metadata, v):
-    """Searches your plex account for media matching the given string, then prints out download commands."""
-
+    """Search your plex account for media matching the given string, then prints out download commands."""
     try:
         p = plexdl.Client(
             username=username,

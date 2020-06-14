@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "plexdl"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["Daniel Hoherd <daniel.hoherd@gmail.com>"]
 license = "UNLICENSE"
@@ -21,6 +21,7 @@ python = "^3.7"
 click = "^7.0"
 PlexAPI = "^3.2"
 humanfriendly = "^7.0"
+importlib_metadata = "^1.6.1"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
