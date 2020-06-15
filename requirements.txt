@@ -1,2 +1,0 @@
-Click>=7.0
-PlexAPI>=3.1.0

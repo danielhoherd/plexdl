@@ -18,23 +18,44 @@ plexdl = 'plexdl.cli:main'
 
 [tool.poetry.dependencies]
 python = "^3.7"
-click = "^7.0"
-PlexAPI = "^3.2"
-humanfriendly = "^7.0"
+click = "^7.1.2"
+PlexAPI = "^4.0.0"
+humanfriendly = "^8.2"
 importlib_metadata = "^1.6.1"
+requests = "^2.23.0"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
-bpython = "^0.18"
 flake8 = "^3.7"
+tox = "^3.15.2"
+pytest = "^5.4.3"
 
 [tool.black]
-# https://github.com/psf/black#configuration-format
 line-length = 132
 
 [tool.dephell.main]
 from = {format = "poetry", path = "pyproject.toml"}
 to = {format = "setuppy", path = "setup.py"}
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py37,38
+skipsdist = True
+
+[testenv]
+whitelist_externals = poetry
+#skip_install = true
+deps = pre-commit
+commands =
+    pre-commit install -f --install-hooks
+    pre-commit run --all-files
+    poetry install -vvv
+    poetry run pytest tests/
+
+[pep8]
+ignore = E265
+"""
 [build-system]
 requires = ["poetry>=1.0.2"]
 build-backend = "poetry.masonry.api"

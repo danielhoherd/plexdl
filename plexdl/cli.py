@@ -13,7 +13,7 @@ from importlib_metadata import version
 
 __version__ = version(__package__)
 
-import plexdl
+from plexdl.plexdl import Client
 
 
 def get_logger(ctx, param, value):
@@ -39,7 +39,7 @@ def get_logger(ctx, param, value):
 def main(username, password, title, relay, server_info, item_prefix, summary, ratings, metadata, v):
     """Search your plex account for media matching the given string, then prints out download commands."""
     try:
-        p = plexdl.Client(
+        p = Client(
             username=username,
             password=password,
             title=title,
