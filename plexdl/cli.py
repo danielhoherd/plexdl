@@ -18,7 +18,7 @@ from plexdl.plexdl import Client
 
 def get_logger(ctx, param, value):
     """Get logger and return verbosity value."""
-    logging.basicConfig(format="%(asctime)s %(levelname)s: %(message)s", datefmt="%FT%T%z")
+    logging.basicConfig(format="%(message)s")
     log = logging.getLogger("plexdl")
     log.setLevel(50 - (value * 10))  # https://docs.python.org/3.7/library/logging.html#logging-levels
     return value
