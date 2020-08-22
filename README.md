@@ -1,14 +1,14 @@
 The purpose of this tool is to allow you to download non-transcoded media from Plex Media Server shares.
 
 - <https://github.com/danielhoherd/plexdl>
-- <https://hub.docker.com/r/danielhoherd/plexdl>
+- <https://quay.io/user/danielhoherd/plexdl>
 
 # Run via Docker
 
 ```
 export PLEXDL_USER=whoever
 export PLEXDL_PASS=hunter2
-alias plexdl='docker run --rm -e PLEXDL_USER -e PLEXDL_PASS danielhoherd/plexdl plexdl'
+alias plexdl='docker run --rm -e PLEXDL_USER -e PLEXDL_PASS quay.io/danielhoherd/plexdl plexdl'
 plexdl $movie_title
 ```
 
