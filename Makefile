@@ -66,5 +66,5 @@ requirements: .requirements ## Install requirements
 	touch .requirements
 
 .PHONY: generate-setup.py
-generate-setup.py: ## Generate the setup.py file from pyproject.toml
-	poetry run -- dephell deps convert --from pyproject.toml --from-format poetry --to setup.py --to-format setuppy
+generate-setup.py: wheel ## Generate the setup.py file from pyproject.toml
+	tar -xvf dist/*.tar.gz --wildcards --no-anchored '*/setup.py' --strip=1

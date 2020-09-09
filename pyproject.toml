@@ -33,10 +33,6 @@ pytest = "^5.4.3"
 [tool.black]
 line-length = 132
 
-[tool.dephell.main]
-from = {format = "poetry", path = "pyproject.toml"}
-to = {format = "setuppy", path = "setup.py"}
-
 [tool.tox]
 legacy_tox_ini = """
 [tox]
