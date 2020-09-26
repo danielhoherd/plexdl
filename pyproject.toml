@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "plexdl"
-version = "0.2.1"
+version = "0.3.0"
 description = ""
 authors = ["Daniel Hoherd <daniel.hoherd@gmail.com>"]
-license = "UNLICENSE"
+license = "MIT License"
 classifiers=[
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Environment :: Console",
-    "License :: OSI Approved :: UNLICENSE License",
+    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.7",
     "Topic :: Utilities",
