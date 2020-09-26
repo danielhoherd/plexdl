@@ -20,12 +20,13 @@ def get_logger(ctx, param, value):
     """Get logger and return verbosity value."""
     logging.basicConfig(format="%(message)s")
     log = logging.getLogger("plexdl")
-    log.setLevel(50 - (value * 10))  # https://docs.python.org/3.7/library/logging.html#logging-levels
+    if value > 0:
+        log.setLevel("DEBUG")  # https://docs.python.org/3.7/library/logging.html#logging-levels
     return value
 
 
 @command()
-@option("-v", count=True, help="Increase verbosity (max -vvvv)", callback=get_logger)
+@option("-v", count=True, help="Be verbose", callback=get_logger)
 @option("-u", "--username", help="Your Plex username (env PLEXDL_USER)", envvar="PLEXDL_USER")
 @option("-p", "--password", help="Your Plex password (env PLEXDL_PASS)", envvar="PLEXDL_PASS")
 @option("-r", "--relay/--no-relay", default=False, help="Output relay servers along with direct servers")

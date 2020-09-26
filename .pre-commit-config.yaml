@@ -66,11 +66,11 @@ repos:
       - id: remove-tabs
         exclude_types: [makefile, binary]
   - repo: https://github.com/danielhoherd/pre-commit-hooks
-    rev: 07f5a00b0f7d7856d602baf5e530a4d4472d7bf3
+    rev: ac0637d7febb88d1b01f876e47bb5224a9a63eae
     hooks:
       - id: CVE-2017-18342
-      - id: remove-unicode-zero-width-space
+      - id: remove-en-dashes
       - id: remove-unicode-non-breaking-spaces
       - id: remove-unicode-zero-width-non-breaking-spaces
-      - id: remove-en-dashes
+      - id: remove-unicode-zero-width-space
       - id: sort-gitignore

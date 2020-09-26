@@ -34,7 +34,7 @@ class Client(object):
     @staticmethod
     def print_item_info(self, item, access_token):
         """Print info about a given media item."""
-        log.critical(f"Filesystem locations: {item.locations}")
+        log.debug(f"Filesystem locations: {item.locations}")
         if hasattr(item, "iterParts"):
             locations = [i for i in item.iterParts() if i]
             for location in locations:
