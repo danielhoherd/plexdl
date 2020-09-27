@@ -1,9 +1,11 @@
+# plexdl
+
 The purpose of this tool is to allow you to download non-transcoded media from Plex Media Server shares.
 
 - <https://github.com/danielhoherd/plexdl>
 - <https://quay.io/user/danielhoherd/plexdl>
 
-# Run via Docker
+## Run via Docker
 
 ```
 export PLEXDL_USER=whoever
@@ -12,14 +14,14 @@ alias plexdl='docker run --rm -e PLEXDL_USER -e PLEXDL_PASS quay.io/danielhoherd
 plexdl $movie_title
 ```
 
-# Local Installation
+## Local Installation
 
 ```
 git clone https://github.com/danielhoherd/plexdl.git
 pip3 install ./plexdl
 ```
 
-# Usage
+## Usage
 
 ```
 $ plexdl --help
@@ -74,7 +76,7 @@ Rated: PG
    "Back to the Future.mp4" "https://...some_url..."
 ```
 
-# TODO
+## TODO
 
 - cleanup
 - tests
