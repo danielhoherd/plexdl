@@ -1,9 +1,9 @@
-name: Lint
+name: pre-commit
 
 on: [push, pull_request]
 
 jobs:
-  lint:
+  pre-commit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
