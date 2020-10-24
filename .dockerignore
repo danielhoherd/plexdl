@@ -1,9 +1,13 @@
+*.avi
 *.egg-info/
 *.m4a
+*.mkv
+*.mov
+*.mp4
 *.pyc
 *.sw?
-.dockerignore
 .DS_Store
+.dockerignore
 .env
 .git
 .idea
@@ -11,8 +15,9 @@
 .requirements*
 .tox
 .vscode
+Pipfile.lock
+__pycache__
 dev.env
 env
 pip-wheel-metadata
-Pipfile.lock
-__pycache__
+poetry.lock

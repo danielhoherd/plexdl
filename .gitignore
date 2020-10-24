@@ -1,9 +1,15 @@
+*.avi
 *.egg-info/
 *.m4a
+*.mkv
+*.mov
+*.mp4
 *.pyc
 *.sw?
 .DS_Store
+.dockerignore
 .env
+.git
 .idea
 .mypy_cache
 .requirements*
