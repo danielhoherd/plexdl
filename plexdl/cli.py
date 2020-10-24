@@ -30,7 +30,7 @@ def get_logger(ctx, param, value):
 @option("-u", "--username", help="Your Plex username (env PLEXDL_USER)", envvar="PLEXDL_USER")
 @option("-p", "--password", help="Your Plex password (env PLEXDL_PASS)", envvar="PLEXDL_PASS")
 @option("-r", "--relay/--no-relay", default=False, help="Output relay servers along with direct servers")
-@option("--item-prefix", default=str(""), help="String to prefix to each item (eg: curl -o)", envvar="PLEXDL_ITEM_PREFIX")
+@option("--item-prefix", default="", help="String to prefix to each item (eg: curl -o)", envvar="PLEXDL_ITEM_PREFIX")
 @option("--server-info/--no-server-info", default=False, help="Output summary about each server")
 @option("--summary/--no-summary", default=False, help="Output summary about each result")
 @option("--ratings/--no-ratings", default=False, help="Output rating information for each result")

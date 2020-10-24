@@ -1,19 +1,15 @@
 ---
 exclude: '(venv|.vscode)'  # regex
 repos:
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.7.3
+    hooks:
+      - id: pyupgrade
+        args: ['--py37-plus']
   - repo: https://github.com/asottile/reorder_python_imports
     rev: v2.3.5
     hooks:
       - id: reorder-python-imports
-  - repo: local
-    hooks:
-      - id: flynt
-        name: flynt
-        entry: flynt
-        args: ['--fail-on-change', '--quiet']
-        types: [python]
-        language: python
-        additional_dependencies: ['flynt']
   - repo: https://github.com/psf/black
     rev: 20.8b1
     hooks:
@@ -28,14 +24,15 @@ repos:
     hooks:
       - id: pydocstyle
   - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.8.3
+    rev: 3.8.4
     hooks:
       - id: flake8
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.2.0
+    rev: v3.3.0
     hooks:
       - id: check-byte-order-marker
       - id: check-case-conflict
+      - id: check-executables-have-shebangs
       - id: check-docstring-first
       - id: check-json
       - id: check-merge-conflict
@@ -46,18 +43,21 @@ repos:
       - id: debug-statements
       - id: detect-private-key
       - id: end-of-file-fixer
+      - id: file-contents-sorter
+        files: .gitignore
       - id: mixed-line-ending
         args: ['--fix=lf']
+      - id: pretty-format-json
       - id: requirements-txt-fixer
       - id: sort-simple-yaml
       - id: trailing-whitespace
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.782
+    rev: v0.790
     hooks:
       - id: mypy
         args: ['--no-strict-optional', '--ignore-missing-imports', '--python-version', '3.7']
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.24.2
+    rev: v1.25.0
     hooks:
       - id: yamllint
   - repo: https://github.com/Lucas-C/pre-commit-hooks
@@ -66,11 +66,10 @@ repos:
       - id: remove-tabs
         exclude_types: [makefile, binary]
   - repo: https://github.com/danielhoherd/pre-commit-hooks
-    rev: ac0637d7febb88d1b01f876e47bb5224a9a63eae
+    rev: fdcede7a5c8ea762c903f242279112161cf35d9f
     hooks:
       - id: CVE-2017-18342
       - id: remove-en-dashes
       - id: remove-unicode-non-breaking-spaces
       - id: remove-unicode-zero-width-non-breaking-spaces
       - id: remove-unicode-zero-width-space
-      - id: sort-gitignore

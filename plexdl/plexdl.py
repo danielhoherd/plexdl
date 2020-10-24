@@ -12,7 +12,7 @@ log = logging.getLogger("plexdl")
 locale.setlocale(locale.LC_ALL, "")
 
 
-class Client(object):
+class Client:
     """A client interface to plex for finding direct download URLs."""
 
     def __init__(self, **kwargs):
