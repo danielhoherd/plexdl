@@ -47,33 +47,25 @@ Options:
 ```
 
 ```
-$ plexdl automobile
+$ plexdl living
 ===============================================================================
 Server: "demo-server-1"
 -------------------------------------------------------------------------------
-Movie: Planes, Trains and Automobiles
-   "Planes, Trains and Automobiles.mkv" "https://...some_url..."
+Movie: Night of the Living Dead
+   "Night of the Living Dead.mkv" "https://...some_url..."
 ```
 ```
-$ plexdl --ratings --metadata --summary flower
+$ plexdl --ratings --metadata --summary living
 ===============================================================================
 Server: "demo-server-2"
 -------------------------------------------------------------------------------
-Movie: Back to the Future: Part II
-Summary: After visiting 2015, Marty McFly must repeat his visit to 1955 to prevent disastrous changes to 1985... without interfering with his first trip.
-Audience rating: 8.5
-Critic rating: 6.3
-Rated: PG
-(1280x688, h264, ac3, 4005kbps)
-   "Back to the Future: Part II.mp4" "https://...some_url..."
--------------------------------------------------------------------------------
-Movie: Back to the Future
-Summary: A teenager is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his friend, Dr. Emmett Brown, and must make sure his high-school-age parents unite in order to save his own existence.
-Audience rating: 9.4
-Critic rating: 9.6
-Rated: PG
-(1280x688, h264, ac3, 5043kbps)
-   "Back to the Future.mp4" "https://...some_url..."
+Movie: Night of the Living Dead
+Summary: A ragtag group of Pennsylvanians barricade themselves in an old farmhouse to remain safe from a bloodthirsty, flesh-eating breed of monsters who are ravaging the East Coast of the United States.
+Audience rating: 7.7
+Critic rating: 5.5
+Rated: NR
+(1280x672, h264, ac3, 4208kbps)
+   "Night of the Living Dead.mkv" "https://...some_url..."
 ```
 
 ## TODO
