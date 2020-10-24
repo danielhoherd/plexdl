@@ -36,11 +36,14 @@ docker-push: ## Push built Docker container to Docker Hub
 	docker push ${IMAGE_NAME}
 
 .PHONY: clean
-clean: ## Clean build artifacts and delete virtualenv
+clean: ## Delete build artifacts
 	rm -f .requirements-dev .requirements || true
 	find . -name '*.pyc' -delete
 	find . -name '__pycache__' -delete
 	rm -rf dist
+
+.PHONY: poetry-clean
+poetry-clean: ## Delete poetry virtualenv
 	poetry env list 2>/dev/null | awk '{print $$1}' | xargs -n1 poetry env remove || true
 
 .PHONY: wheel
