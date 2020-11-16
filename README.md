@@ -54,6 +54,7 @@ Server: "demo-server-1"
 Movie: Night of the Living Dead
    "Night of the Living Dead.mkv" "https://...some_url..."
 ```
+
 ```
 $ plexdl --ratings --metadata --summary living
 ===============================================================================
