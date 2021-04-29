@@ -3,7 +3,7 @@
 The purpose of this tool is to allow you to download non-transcoded media from Plex Media Server shares.
 
 - <https://github.com/danielhoherd/plexdl>
-- <https://quay.io/user/danielhoherd/plexdl>
+- <https://quay.io/repository/danielhoherd/plexdl>
 
 ## Run via Docker
 
