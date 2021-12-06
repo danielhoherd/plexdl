@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "plexdl"
-version = "0.3.1"
+version = "0.3.2"
 description = ""
 authors = ["Daniel Hoherd <daniel.hoherd@gmail.com>"]
 license = "MIT License"
@@ -18,11 +18,11 @@ plexdl = 'plexdl.cli:main'
 
 [tool.poetry.dependencies]
 python = "^3.7"
-click = "^7.1.2"
-PlexAPI = "^4.1.2"
-humanfriendly = "^8.2"
-importlib_metadata = "^1.6.1"
-requests = "^2.24.0"
+click = "^8.0.3"
+PlexAPI = "^4.8.0"
+humanfriendly = "^10.0"
+requests = "^2.26.0"
+importlib-metadata = "^4.8.2"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
@@ -36,7 +36,7 @@ line-length = 132
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = py37,38
+envlist = py39
 skipsdist = True
 
 [testenv]
