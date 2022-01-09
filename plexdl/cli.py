@@ -4,11 +4,7 @@ import os
 import sys
 
 import plexapi
-from click import argument
-from click import command
-from click import echo
-from click import option
-from click import version_option
+from click import argument, command, echo, option, version_option
 from importlib_metadata import version
 
 __version__ = version(__package__)
