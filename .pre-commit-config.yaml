@@ -67,7 +67,7 @@ repos:
       - id: remove-tabs
         exclude_types: [makefile, binary]
   - repo: https://github.com/danielhoherd/pre-commit-hooks
-    rev: 3df2cd5fc0bffe63b0a5e0021f9885a223d51600
+    rev: 65ea059268676338855129ec6c36b3e981d621da
     hooks:
       - id: CVE-2017-18342
       - id: remove-en-dashes
