@@ -58,7 +58,7 @@ class Client:
                         media_info.append(f"{length}")
                     except ValueError:
                         pass
-                if len(media_info) > 0:
+                if media_info:
                     print(f'({", ".join(media_info)})')
                 print(f'  {self.item_prefix} "{download_filename}" "{download_url}"')
 

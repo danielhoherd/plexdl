@@ -14,7 +14,7 @@ classifiers=[
 ]
 
 [tool.poetry.scripts]
-plexdl = 'plexdl.cli:main'
+plexdl = 'plexdl.cli:app'
 
 [tool.poetry.dependencies]
 humanfriendly = "^10.0"
