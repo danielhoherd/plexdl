@@ -58,6 +58,7 @@ test: ## Run tests
 requirements-dev: .requirements-dev ## Install dev requirements
 .requirements-dev:
 	pip3 install --user --upgrade poetry
+	poetry run pip install --quiet --upgrade pip setuptools wheel
 	poetry install
 	touch .requirements-dev .requirements
 
@@ -65,6 +66,7 @@ requirements-dev: .requirements-dev ## Install dev requirements
 requirements: .requirements ## Install requirements
 .requirements:
 	pip3 install --user --upgrade poetry
+	poetry run pip install --quiet --upgrade pip setuptools wheel
 	poetry install --no-dev
 	touch .requirements
 
