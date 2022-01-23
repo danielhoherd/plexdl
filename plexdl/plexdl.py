@@ -23,7 +23,6 @@ class Client:
         self.password = kwargs["password"]
         self.ratings = kwargs["ratings"]
         self.relay = kwargs["relay"]
-        self.server_info = kwargs["server_info"]
         self.summary = kwargs["summary"]
         self.title = kwargs["title"]
         self.username = kwargs["username"]
@@ -69,14 +68,16 @@ class Client:
             print("-" * 79)
             print(f"{item.TYPE.capitalize()}: {item.title}")
             if self.summary is True and len(item.summary) > 1:
+                print(f"Year: {item.year}")
+                print(f"Studio: {item.studio}")
                 print(f"Summary: {item.summary}")
             if self.ratings is True:
+                if item.contentRating:
+                    print(f"Content rating: {item.contentRating}")
                 if item.audienceRating:
                     print(f"Audience rating: {item.audienceRating}")
                 if item.rating:
                     print(f"Critic rating: {item.rating}")
-                if item.contentRating:
-                    print(f"Rated: {item.contentRating}")
             self.print_item_info(self, item, access_token)
         elif item.TYPE in ["show"]:
             print("-" * 79)
@@ -112,11 +113,6 @@ class Client:
                     print("\n")
                     print("=" * 79)
                     print(f'Server: "{this_server_connection.friendlyName}"{relay_status}')
-                    if self.server_info is True:
-                        print(
-                            f'Plex version: {this_server_connection.version}\n"'
-                            f"OS: {this_server_connection.platform} {this_server_connection.platformVersion}"
-                        )
 
                     # TODO: add flags for each media type to help sort down what is displayed (since /hub/seach?mediatype="foo" doesn't work)
                     # TODO: write handlers for each type

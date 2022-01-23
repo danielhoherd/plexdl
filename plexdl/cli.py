@@ -26,40 +26,6 @@ def get_logger(ctx, param, value):
     return value
 
 
-# @command()
-# @option("-v", count=True, help="Be verbose", callback=get_logger)
-# @option("-u", "--username", help="Your Plex username (env PLEXDL_USER)", envvar="PLEXDL_USER")
-# @option("-p", "--password", help="Your Plex password (env PLEXDL_PASS)", envvar="PLEXDL_PASS")
-# @option("-r", "--relay/--no-relay", default=False, help="Output relay servers along with direct servers")
-# @option("--item-prefix", default="", help="String to prefix to each item (eg: curl -o)", envvar="PLEXDL_ITEM_PREFIX")
-# @option("--server-info/--no-server-info", default=False, help="Output summary about each server")
-# @option("--summary/--no-summary", default=False, help="Output summary about each result")
-# @option("--ratings/--no-ratings", default=False, help="Output rating information for each result")
-# @option("--metadata/--no-metadata", default=False, help="Output media metadata about each file for each result")
-# @version_option(version=__version__)
-# @argument("title", envvar="PLEXDL_TITLE")
-# def main(username, password, title, relay, server_info, item_prefix, summary, ratings, metadata, v):
-#     """Search your plex account for media matching the given string, then prints out download commands."""
-#     try:
-#         p = Client(
-#             username=username,
-#             password=password,
-#             title=title,
-#             relay=relay,
-#             debug=v,
-#             item_prefix=item_prefix,
-#             server_info=server_info,
-#             summary=summary,
-#             ratings=ratings,
-#             metadata=metadata,
-#         )
-
-#         p.main()
-#     except KeyboardInterrupt:
-#         sys.exit(1)
-#     except plexapi.exceptions.BadRequest:
-#         sys.exit(2)
-
 app = typer.Typer(help=__doc__)
 
 
@@ -113,16 +79,39 @@ def get_server_info(
 
 @app.command()
 def search(
-    username: str = typer.Argument(None, envvar="PLEXDL_USERNAME"),
-    password: str = typer.Argument(None, envvar="PLEXDL_PASSWORD"),
-    debug: bool = typer.Argument(False, envvar="PLEXDL_PASSWORD"),
+    username: str = typer.Option(..., "-u", "--username", envvar="PLEXDL_USERNAME"),
+    password: str = typer.Option(..., "-p", "--password", envvar="PLEXDL_PASSWORD"),
+    title: str = typer.Argument(..., envvar="PLEXDL_TITLE"),
+    item_prefix: str = typer.Option("", "--item-prefix", help="String to prefix to each item (eg: curl -o)"),
+    show_summary: bool = typer.Option(False, "--show-summary", help="Show media summary for each result"),
+    show_ratings: bool = typer.Option(False, "--show-ratings", help="Show ratings for each result"),
+    show_metadata: bool = typer.Option(False, "--show-metadata", help="Show file and codec metadata for each file in each result"),
+    include_relays: bool = typer.Option(False, "--include-relays", help="Output relay servers along with direct servers"),
+    verbose: bool = typer.Option(False, "--verbose", "-v"),
+    debug: bool = typer.Option(False, "--debug"),
 ):
     """Search for media in servers that are available to your account."""
-    print("unimplemented")
+    p = Client(
+        username=username,
+        password=password,
+        title=title,
+        relay=include_relays,
+        debug=debug,
+        item_prefix=item_prefix,
+        summary=show_summary,
+        ratings=show_ratings,
+        metadata=show_metadata,
+    )
+    p.main()
 
 
 if __name__ == "__main__":
-    app()
+    try:
+        app()
+    except KeyboardInterrupt:
+        sys.exit(1)
+    except plexapi.exceptions.BadRequest:
+        sys.exit(2)
 
 
 # https://typer.tiangolo.com/tutorial/subcommands/add-typer/
