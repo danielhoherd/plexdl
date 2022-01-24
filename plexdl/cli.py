@@ -26,7 +26,7 @@ def get_logger(ctx, param, value):
     return value
 
 
-app = typer.Typer(help=__doc__)
+app = typer.Typer(help=__doc__, context_settings=dict(max_content_width=9999))
 
 
 @app.command()
