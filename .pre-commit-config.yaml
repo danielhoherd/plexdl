@@ -21,7 +21,7 @@ repos:
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.2
+    rev: 1.7.3
     hooks:
       - id: bandit
         args: ["-s", "B101"]
@@ -62,7 +62,7 @@ repos:
     hooks:
       - id: yamllint
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.12
+    rev: v1.1.13
     hooks:
       - id: remove-tabs
         exclude_types: [makefile, binary]
