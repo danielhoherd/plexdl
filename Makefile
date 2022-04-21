@@ -45,6 +45,7 @@ clean: ## Delete build artifacts
 .PHONY: poetry-clean
 poetry-clean: ## Delete poetry virtualenv
 	poetry env list 2>/dev/null | awk '{print $$1}' | xargs -n1 poetry env remove || true
+	rm -fv .requirements
 
 .PHONY: wheel
 wheel: ## Build a wheel
