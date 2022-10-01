@@ -38,7 +38,7 @@ class Client:
             locations = [i for i in item.iterParts() if i]
             for location in locations:
                 media_info = []
-                download_url = item._server.url(f"{location.key}?download=1&X-Plex-Token={access_token}")
+                download_url = item._server.url(f"{location.key}?X-Plex-Token={access_token}")
                 download_filename = ""
                 if hasattr(item, "seasonEpisode"):
                     download_filename += f"{item.seasonEpisode} "
