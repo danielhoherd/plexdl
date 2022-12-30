@@ -34,32 +34,33 @@ class Client:
     def print_item_info(self, item, access_token):
         """Print info about a given media item."""
         log.debug(f"Filesystem locations: {item.locations}")
-        if hasattr(item, "iterParts"):
-            locations = [i for i in item.iterParts() if i]
-            for location in locations:
-                media_info = []
-                download_url = item._server.url(f"{location.key}?X-Plex-Token={access_token}")
-                download_filename = ""
-                if hasattr(item, "seasonEpisode"):
-                    download_filename += f"{item.seasonEpisode} "
-                download_filename += f"{item.title}.{location.container}"
-                if self.metadata is True:
-                    if item.media[0].width is not None:
-                        media_info.append(f"{item.media[0].width}x{item.media[0].height}")
-                    if item.media[0].videoCodec is not None:
-                        media_info.append(item.media[0].videoCodec)
-                    if item.media[0].audioCodec is not None:
-                        media_info.append(item.media[0].audioCodec)
-                    if item.media[0].bitrate is not None:
-                        media_info.append(f"{item.media[0].bitrate}kbps")
-                    try:
-                        length = humanfriendly.format_size(int(requests.head(download_url).headers["Content-Length"]))
-                        media_info.append(f"{length}")
-                    except ValueError:
-                        pass
-                if media_info:
-                    print(f'({", ".join(media_info)})')
-                print(f'  {self.item_prefix} "{download_filename}" "{download_url}"')
+        if not hasattr(item, "iterParts"):
+            return
+        locations = [i for i in item.iterParts() if i]
+        for location in locations:
+            media_info = []
+            download_url = item._server.url(f"{location.key}?X-Plex-Token={access_token}")
+            download_filename = ""
+            if hasattr(item, "seasonEpisode"):
+                download_filename += f"{item.seasonEpisode} "
+            download_filename += f"{item.title}.{location.container}"
+            if self.metadata is True:
+                if item.media[0].width is not None:
+                    media_info.append(f"{item.media[0].width}x{item.media[0].height}")
+                if item.media[0].videoCodec is not None:
+                    media_info.append(item.media[0].videoCodec)
+                if item.media[0].audioCodec is not None:
+                    media_info.append(item.media[0].audioCodec)
+                if item.media[0].bitrate is not None:
+                    media_info.append(f"{item.media[0].bitrate}kbps")
+                try:
+                    length = humanfriendly.format_size(int(requests.head(download_url).headers["Content-Length"]))
+                    media_info.append(f"{length}")
+                except ValueError:
+                    pass
+            if media_info:
+                print(f'({", ".join(media_info)})')
+            print(f'  {self.item_prefix} "{download_filename}" "{download_url}"')
 
     @staticmethod
     def print_all_items_for_server(self, item, access_token):
