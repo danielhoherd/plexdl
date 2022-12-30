@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "plexdl"
-version = "0.4.0"
+version = "0.4.1"
 description = ""
 authors = ["Daniel Hoherd <daniel.hoherd@gmail.com>"]
 license = "MIT License"
