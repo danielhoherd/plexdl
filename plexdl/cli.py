@@ -1,7 +1,6 @@
 """plexdl CLI."""
 import datetime
 import logging
-import os
 import sys
 
 import humanize
@@ -12,7 +11,6 @@ from importlib_metadata import version
 __version__ = version(__package__)
 
 from plexapi.myplex import MyPlexAccount
-from plexapi.server import PlexServer
 
 from plexdl.plexdl import Client
 
