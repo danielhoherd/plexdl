@@ -1,0 +1,25 @@
+name: "Close stale issues and PRs"
+
+permissions:
+  issues: write
+  pull-requests: write
+
+on:
+  # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onschedule
+  # gh actions cron TZ is UTC
+  schedule:
+    - cron: "37 22 * * 5" # https://crontab.guru/#37_22_*_*_5
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v8
+        with:
+          close-issue-message: "This issue has been closed due to inactivity."
+          stale-issue-message: "This issue has been marked as stale. It will be closed in 14 days if no activity is seen."
+          labels-to-remove-when-unstale: stale
+          remove-issue-stale-when-updated: true
+          days-before-stale: 180
+          days-before-close: 14
+          operations-per-run: 50
