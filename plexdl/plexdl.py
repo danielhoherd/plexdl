@@ -54,7 +54,7 @@ class Client:
                 if item.media[0].bitrate is not None:
                     media_info.append(f"{item.media[0].bitrate}kbps")
                 try:
-                    length = humanfriendly.format_size(int(requests.head(download_url).headers["Content-Length"]))
+                    length = humanfriendly.format_size(int(requests.head(download_url, timeout=30).headers["Content-Length"]))
                     media_info.append(f"{length}")
                 except ValueError:
                     pass

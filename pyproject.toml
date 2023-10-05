@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "plexdl"
-version = "0.4.2"
+version = "0.4.3"
 description = ""
 authors = ["Daniel Hoherd <daniel.hoherd@gmail.com>"]
 license = "MIT License"
@@ -9,7 +9,7 @@ classifiers=[
     "Environment :: Console",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
     "Topic :: Utilities",
 ]
 
@@ -56,5 +56,14 @@ commands =
 ignore = E265
 """
 [build-system]
-requires = ["poetry>=1.1.13"]
+requires = ["poetry>=1.5.1"]
 build-backend = "poetry.masonry.api"
+
+[tool.ruff]
+fixable = ["ALL"]
+select = ["E", "F", "Q", "S"]
+ignore = ["E501", "S311", "S603", "S608", "Q000", "S108"]
+
+[tool.ruff.per-file-ignores]
+"tests/*" = ["S101"]
+"**/__init__.py" = ["F401"]
