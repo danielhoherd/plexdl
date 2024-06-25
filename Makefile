@@ -2,7 +2,7 @@
 
 .PHONY: help
 help: ## Print Makefile help
-	@grep -Eh '^[a-z.A-Z_0-9-]+:.*?## .*$$' ${MAKEFILE_LIST} | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-18s\033[0m %s\n", $$1, $$2}'
+	@grep -Eh '^[a-z.A-Z_0-9-]+:.*?## .*$$' ${MAKEFILE_LIST} | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[1;36m%-18s\033[0m %s\n", $$1, $$2}'
 
 IMAGE_NAME     ?= quay.io/danielhoherd/plexdl
 NO_CACHE       ?= false
