@@ -1,4 +1,5 @@
 """plexdl boilerplate tests."""
+
 from plexdl.plexdl import Client
 
 

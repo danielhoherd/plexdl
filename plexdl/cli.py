@@ -1,4 +1,5 @@
 """plexdl CLI."""
+
 import datetime
 import logging
 import sys
@@ -24,7 +25,7 @@ def get_logger(ctx, param, value):
     return value
 
 
-app = typer.Typer(help=__doc__, context_settings=dict(max_content_width=9999))
+app = typer.Typer(help=__doc__, context_settings={"max_content_width": 9999})
 
 
 @app.command()

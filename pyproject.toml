@@ -18,20 +18,20 @@ plexdl = 'plexdl.cli:app'
 
 [tool.poetry.dependencies]
 humanfriendly = "^10.0"
-importlib-metadata = "^7.0.1"
+importlib-metadata = "^7.2.1"
 pendulum = "^3.0.0"
-PlexAPI = "^4.15.10"
+PlexAPI = "^4.15.14"
 python = "^3.11"
-requests = "^2.31.0"
-typer = "^0.9.0"
+requests = "^2.32.3"
+typer = "^0.12.3"
 humanize = "^4.9.0"
 
 [tool.poetry.group.dev.dependencies]
-black = "^22.12.0"
-flake8 = "^6.0.0"
-pytest = "^7.2.0"
-tox = "^4.0.16"
-pdbr = "^0.7.6"
+black = "^24.4.2"
+flake8 = "^7.1.0"
+pytest = "^8.2.2"
+tox = "^4.15.1"
+pdbr = "^0.8.8"
 
 [tool.black]
 line-length = 132
@@ -59,11 +59,15 @@ ignore = E265
 requires = ["poetry>=1.5.1"]
 build-backend = "poetry.masonry.api"
 
-[tool.ruff]
+[tool.ruff.lint]
 fixable = ["ALL"]
-select = ["E", "F", "Q", "S"]
-ignore = ["E501", "S311", "S603", "S608", "Q000", "S108"]
+select = ["C", "E", "F", "Q", "S"]
+ignore = ["E501", "S311", "S603", "S608", "S607"]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S101"]
 "**/__init__.py" = ["F401"]
+
+[tool.ruff.lint.mccabe]
+# TODO: reduce this
+max-complexity = 11

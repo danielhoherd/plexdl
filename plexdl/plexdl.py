@@ -1,4 +1,5 @@
 """plexdl client class."""
+
 import locale
 import logging
 from typing import List
@@ -28,7 +29,7 @@ class Client:
         self.username = kwargs["username"]
         self.account = MyPlexAccount(self.username, self.password)
 
-    available_servers: List[PlexServer] = list()
+    available_servers: List[PlexServer] = []
 
     @staticmethod
     def print_item_info(self, item, access_token):

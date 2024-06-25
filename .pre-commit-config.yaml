@@ -8,31 +8,31 @@ repos:
       - id: python-check-blanket-type-ignore
       - id: text-unicode-replacement-char
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: "v3.0.3"
+    rev: "v3.1.0"
     hooks:
       - id: prettier
         args: ["--print-width=135"]
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.14.0
+    rev: v3.16.0
     hooks:
       - id: pyupgrade
         args: ["--py38-plus"]
   - repo: https://github.com/pycqa/isort
-    rev: 5.12.0
+    rev: 5.13.2
     hooks:
       - id: isort
         name: isort (python)
   - repo: https://github.com/psf/black
-    rev: 23.9.1
+    rev: 24.4.2
     hooks:
       - id: black
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: "v0.0.292"
+    rev: "v0.4.10"
     hooks:
       - id: ruff
         args: ["--fix", "--exit-non-zero-on-fix"]
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.5
+    rev: 1.7.9
     hooks:
       - id: bandit
         args: ["-s", "B101"]
@@ -41,11 +41,11 @@ repos:
     hooks:
       - id: pydocstyle
   - repo: https://github.com/PyCQA/flake8
-    rev: 6.1.0
+    rev: 7.1.0
     hooks:
       - id: flake8
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.6.0
     hooks:
       - id: check-byte-order-marker
       - id: check-case-conflict
@@ -69,18 +69,19 @@ repos:
       - id: sort-simple-yaml
       - id: trailing-whitespace
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.32.0
+    rev: v1.35.1
     hooks:
       - id: yamllint
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.5.4
+    rev: v1.5.5
     hooks:
       - id: remove-tabs
         exclude_types: [makefile, binary]
   - repo: https://github.com/danielhoherd/pre-commit-hooks
-    rev: 8b2d969bd549cd7c9454cc8bb54eec5b35c2e5e6
+    rev: 976b58ba36fcd3313fed6d5a7abc228cec64f994
     hooks:
       - id: CVE-2017-18342
+      - id: remove-unicode-left-to-right-mark
       - id: remove-unicode-zero-width-non-breaking-spaces
       - id: remove-unicode-zero-width-space
       - id: replace-en-dashes
