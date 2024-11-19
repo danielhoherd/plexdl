@@ -2,7 +2,7 @@
 
 import locale
 import logging
-from typing import List
+from typing import ClassVar
 
 import humanfriendly
 import requests
@@ -29,7 +29,7 @@ class Client:
         self.username = kwargs["username"]
         self.account = MyPlexAccount(self.username, self.password)
 
-    available_servers: List[PlexServer] = []
+    available_servers: ClassVar[list[PlexServer]] = []
 
     @staticmethod
     def print_item_info(self, item, access_token):
@@ -110,8 +110,7 @@ class Client:
                         if self.relay is False:
                             log.debug(f"Skipping {this_server_connection.friendlyName} relay")
                             continue
-                        else:
-                            relay_status = " (relay)"
+                        relay_status = " (relay)"
                     print("\n")
                     print("=" * 79)
                     print(f'Server: "{this_server_connection.friendlyName}"{relay_status}')

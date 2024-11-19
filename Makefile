@@ -44,7 +44,7 @@ clean: ## Delete build artifacts
 
 .PHONY: poetry-clean
 poetry-clean: ## Delete poetry virtualenv
-	poetry env list 2>/dev/null | awk '{print $$1}' | xargs -n1 poetry env remove || true
+	poetry env remove --all
 	rm -fv .requirements
 
 .PHONY: wheel
@@ -53,21 +53,17 @@ wheel: ## Build a wheel
 
 .PHONY: test
 test: ## Run tests
-	tox
+	poetry run pytest tests
 
 .PHONY: requirements-dev
 requirements-dev: .requirements-dev ## Install dev requirements
 .requirements-dev:
-	pip3 install --user --upgrade poetry
-	poetry run pip install --quiet --upgrade pip setuptools wheel
 	poetry install
 	touch .requirements-dev .requirements
 
 .PHONY: requirements
 requirements: .requirements ## Install requirements
 .requirements:
-	pip3 install --user --upgrade poetry
-	poetry run pip install --quiet --upgrade pip setuptools wheel
 	poetry install --no-dev
 	touch .requirements
 
