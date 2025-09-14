@@ -14,14 +14,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Poetry
-        run: curl -sSL https://install.python-poetry.org/ | python -
+      # https://docs.astral.sh/uv/guides/integration/github/
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
 
       - name: Build packages
-        run: poetry build -f wheel
+        run: uv build
 
       - name: Create Release
         id: create_release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: dist/*.whl

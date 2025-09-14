@@ -37,39 +37,24 @@ docker-push: ## Push built Docker container to Docker Hub
 
 .PHONY: clean
 clean: ## Delete build artifacts
-	rm -f .requirements-dev .requirements || true
-	find . -name '*.pyc' -delete
-	find . -name '__pycache__' -delete
-	rm -rf dist
+	-rm -rf .venv
+	-find . -name '*.pyc' -delete
+	-find . -name '__pycache__' -delete
+	-rm -rf dist
 
-.PHONY: poetry-clean
-poetry-clean: ## Delete poetry virtualenv
-	poetry env list 2>/dev/null | awk '{print $$1}' | xargs -n1 poetry env remove || true
-	rm -fv .requirements
-
-.PHONY: wheel
-wheel: ## Build a wheel
-	poetry build -f wheel
+.PHONY: build
+build: ## Build a wheel
+	uv build
 
 .PHONY: test
 test: ## Run tests
-	tox
+	uv run pytest tests
 
-.PHONY: requirements-dev
-requirements-dev: .requirements-dev ## Install dev requirements
-.requirements-dev:
-	pip3 install --user --upgrade poetry
-	poetry run pip install --quiet --upgrade pip setuptools wheel
-	poetry install
-	touch .requirements-dev .requirements
-
-.PHONY: requirements
-requirements: .requirements ## Install requirements
-.requirements:
-	pip3 install --user --upgrade poetry
-	poetry run pip install --quiet --upgrade pip setuptools wheel
-	poetry install --no-dev
-	touch .requirements
+.PHONY: venv
+venv: .venv ## Install dev requirements
+.venv:
+	uv venv --seed
+	uv sync
 
 .PHONY: generate-setup.py
 generate-setup.py: wheel ## Generate the setup.py file from pyproject.toml

@@ -1,7 +1,6 @@
 """plexdl CLI."""
 
 import datetime
-import logging
 import sys
 
 import humanize
@@ -15,24 +14,17 @@ from plexapi.myplex import MyPlexAccount
 
 from plexdl.plexdl import Client
 
-
-def get_logger(ctx, param, value):
-    """Get logger and return verbosity value."""
-    logging.basicConfig(format="%(message)s")
-    log = logging.getLogger("plexdl")
-    if value > 0:
-        log.setLevel("DEBUG")  # https://docs.python.org/3.9/library/logging.html#logging-levels
-    return value
-
-
-app = typer.Typer(help=__doc__, context_settings={"max_content_width": 9999})
+app = typer.Typer(
+    context_settings={"max_content_width": 9999},
+    help=__doc__,
+    pretty_exceptions_enable=False,
+)
 
 
 @app.command()
 def get_server_info(
     username: str = typer.Argument(None, envvar="PLEXDL_USERNAME"),
     password: str = typer.Argument(None, envvar="PLEXDL_PASSWORD"),
-    debug: bool = typer.Argument(False, envvar="PLEXDL_DEBUG"),
 ):
     """Show info about servers available to your account."""
     p = MyPlexAccount(
@@ -63,7 +55,6 @@ def get_server_info(
             print(f"    httpsRequired: {server.httpsRequired}")
             print(f"    name: {server.name}")
             print(f"    owned: {server.owned}")
-            print(f"    ownerid: {server.ownerid}")
             print(f"    platform: {server.platform}")
             print(f"    platformVersion: {server.platformVersion}")
             print(f"    presence: {server.presence}")
@@ -73,7 +64,7 @@ def get_server_info(
             print(f"    publicAddressMatches: {server.publicAddressMatches}")
             print(f"    sourceTitle: {server.sourceTitle}")
             print(f"    synced: {server.synced}")
-            print("")
+            print()
 
 
 @app.command()
@@ -86,7 +77,6 @@ def search(
     show_ratings: bool = typer.Option(False, "--show-ratings", help="Show ratings for each result"),
     show_metadata: bool = typer.Option(False, "--show-metadata", help="Show file and codec metadata for each file in each result"),
     include_relays: bool = typer.Option(False, "--include-relays", help="Output relay servers along with direct servers"),
-    verbose: bool = typer.Option(False, "--verbose", "-v"),
     debug: bool = typer.Option(False, "--debug"),
 ):
     """Search for media in servers that are available to your account."""

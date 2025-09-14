@@ -2,10 +2,11 @@
 
 import locale
 import logging
-from typing import List
+from typing import ClassVar
 
 import humanfriendly
 import requests
+from plexapi.exceptions import Unauthorized
 from plexapi.myplex import MyPlexAccount
 from plexapi.server import PlexServer
 
@@ -29,7 +30,7 @@ class Client:
         self.username = kwargs["username"]
         self.account = MyPlexAccount(self.username, self.password)
 
-    available_servers: List[PlexServer] = []
+    available_servers: ClassVar[list[PlexServer]] = []
 
     @staticmethod
     def print_item_info(self, item, access_token):
@@ -60,7 +61,7 @@ class Client:
                 except ValueError:
                     pass
             if media_info:
-                print(f'({", ".join(media_info)})')
+                print(f"({', '.join(media_info)})")
             print(f'  {self.item_prefix} "{download_filename}" "{download_url}"')
 
     @staticmethod
@@ -110,8 +111,7 @@ class Client:
                         if self.relay is False:
                             log.debug(f"Skipping {this_server_connection.friendlyName} relay")
                             continue
-                        else:
-                            relay_status = " (relay)"
+                        relay_status = " (relay)"
                     print("\n")
                     print("=" * 79)
                     print(f'Server: "{this_server_connection.friendlyName}"{relay_status}')
@@ -122,7 +122,7 @@ class Client:
                     for item in this_server_connection.search(self.title):
                         self.print_all_items_for_server(self, item, this_server.accessToken)
 
-                except (requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout) as e:
+                except (requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout, Unauthorized) as e:
                     print(f'ERROR: connection to "{this_server.name} {connection.address}" failed.')
                     log.debug(e)
                     continue
