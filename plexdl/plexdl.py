@@ -60,7 +60,7 @@ class Client:
                 except ValueError:
                     pass
             if media_info:
-                print(f'({", ".join(media_info)})')
+                print(f"({', '.join(media_info)})")
             print(f'  {self.item_prefix} "{download_filename}" "{download_url}"')
 
     @staticmethod

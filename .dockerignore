@@ -14,10 +14,11 @@
 .mypy_cache
 .requirements*
 .tox
+.venv
 .vscode
 Pipfile.lock
 __pycache__
 dev.env
 env
 pip-wheel-metadata
-poetry.lock
+venv
