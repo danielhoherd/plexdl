@@ -6,6 +6,7 @@ from typing import ClassVar
 
 import humanfriendly
 import requests
+from plexapi.exceptions import Unauthorized
 from plexapi.myplex import MyPlexAccount
 from plexapi.server import PlexServer
 
@@ -121,7 +122,7 @@ class Client:
                     for item in this_server_connection.search(self.title):
                         self.print_all_items_for_server(self, item, this_server.accessToken)
 
-                except (requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout) as e:
+                except (requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout, Unauthorized) as e:
                     print(f'ERROR: connection to "{this_server.name} {connection.address}" failed.')
                     log.debug(e)
                     continue

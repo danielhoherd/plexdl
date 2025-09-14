@@ -14,7 +14,11 @@ from plexapi.myplex import MyPlexAccount
 
 from plexdl.plexdl import Client
 
-app = typer.Typer(help=__doc__, context_settings={"max_content_width": 9999})
+app = typer.Typer(
+    context_settings={"max_content_width": 9999},
+    help=__doc__,
+    pretty_exceptions_enable=False,
+)
 
 
 @app.command()
