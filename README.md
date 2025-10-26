@@ -1,3 +1,5 @@
+ARCHIVAL NOTICE: The Github repo for this project is archived. Development continues at <https://gitlab.com/danielhoherd/plexdl>
+
 # plexdl
 
 The purpose of this tool is to allow you to download non-transcoded media from Plex Media Server shares.
